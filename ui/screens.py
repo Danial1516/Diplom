@@ -1,34 +1,33 @@
 # ui/screens.py
 
-from kivy.uix.screenmanager import Screen
+from kivymd.uix.screen import MDScreen
 from kivymd.uix.label import MDLabel
 from datetime import datetime, timedelta
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.pickers import MDDatePicker
-class LoginScreen(Screen):
+class LoginScreen(MDScreen):
     pass
 
-class RegisterScreen(Screen):
+class RegisterScreen(MDScreen):
     pass
 
-class MainScreen(Screen):
+class MainScreen(MDScreen):
     pass
 
-class HomeScreen(Screen):
+class HomeScreen(MDScreen):
     pass
 
-class TasksScreen(Screen):
+class TasksScreen(MDScreen):
     pass
 
-class RatingScreen(Screen):
+class RatingScreen(MDScreen):
     pass
 
-class NotificationsScreen(Screen):
+class NotificationsScreen(MDScreen):
     pass
 
-class ChatScreen(Screen):
+class ChatScreen(MDScreen):
     pass
 
-class CalendarScreen(Screen):
-
+class CalendarScreen(MDScreen):
     pass

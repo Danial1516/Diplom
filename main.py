@@ -21,26 +21,33 @@ class LangVoyageApp(MDApp):
     translator = Translator()
 
     def build(self):
-        kv_path = os.path.join(os.path.dirname(__file__), 'ui', 'kv')
-        Builder.load_file(os.path.join(kv_path, 'login_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'register_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'main_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'home_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'tasks_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'rating_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'notifications_screen.kv'))
-        Builder.load_file(os.path.join(kv_path, 'chat_screen.kv'))
+        try:
+            kv_path = os.path.join(os.path.dirname(__file__), 'ui', 'kv')
+            Builder.load_file(os.path.join(kv_path, 'login_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'register_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'main_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'home_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'tasks_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'rating_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'notifications_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'chat_screen.kv'))
 
-        sm = ScreenManager()
-        sm.add_widget(LoginScreen(name='login'))
-        sm.add_widget(RegisterScreen(name='register'))
-        sm.add_widget(MainScreen(name='main'))
-        sm.add_widget(HomeScreen(name='home'))
-        sm.add_widget(TasksScreen(name='tasks'))
-        sm.add_widget(RatingScreen(name='rating'))
-        sm.add_widget(NotificationsScreen(name='notifications'))
-        sm.add_widget(ChatScreen(name='chat'))
-        return sm
+            sm = ScreenManager()
+            sm.add_widget(LoginScreen(name='login'))
+            sm.add_widget(RegisterScreen(name='register'))
+            sm.add_widget(MainScreen(name='main'))
+            sm.add_widget(HomeScreen(name='home'))
+            sm.add_widget(TasksScreen(name='tasks'))
+            sm.add_widget(RatingScreen(name='rating'))
+            sm.add_widget(NotificationsScreen(name='notifications'))
+            sm.add_widget(ChatScreen(name='chat'))
+
+            logging.info("Все экраны загружены успешно.")
+            return sm
+
+        except Exception as e:
+            logging.error(f"Ошибка при загрузке экранов: {e}")
+            return None
 
     def login(self):
         email = self.root.get_screen('login').ids.login_email.text
