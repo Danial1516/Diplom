@@ -1,0 +1,24 @@
+# ui/kv/chat_screen.kv
+
+<ChatScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: "Chat"
+            halign: "center"
+        ScrollView:
+            MDList:
+                id: chat_list
+        BoxLayout:
+            size_hint_y: None
+            height: dp(56)
+            padding: dp(10)
+            spacing: dp(10)
+            orientation: 'horizontal'
+            MDTextField:
+                id: chat_input
+                hint_text: "Type your message..."
+                size_hint_x: 0.85
+            MDIconButton:
+                icon: 'send'
+                on_press: app.show_translation()

@@ -1,0 +1,15 @@
+<CalendarScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'Login Streak Calendar'
+            elevation: 10
+        MDGridLayout:
+            id: calendar_grid
+            cols: 7
+            rows: 5
+            padding: [10, 10, 10, 10]
+            spacing: 10
+        MDRaisedButton:
+            text: 'Refresh Calendar'
+            on_release: root.update_calendar()
