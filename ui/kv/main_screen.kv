@@ -34,12 +34,14 @@
                             theme_icon_color: "Custom"
                             icon_color: 0.847, 0.208, 0.329, 1
                             #on_release:
+
                         Widget:
                             size_hint_x: None
                             width: dp(16)
 
                     MDScrollView:
-                        BoxLayout:
+
+                        MDBoxLayout:
                             orientation: 'vertical'
                             size_hint_y: None
                             height: self.minimum_height
@@ -51,16 +53,62 @@
                                 height: self.texture_size[1]
                                 halign: "center"
 
-                            MDLabel:
-                                text: "Scroll down for more content"
+                            # Центральная круглая кнопка сверху
+                            MDBoxLayout:
                                 size_hint_y: None
-                                height: self.texture_size[1]
-                                halign: "center"
+                                height: dp(100)
+                                padding: dp(10)
+                                Widget:  # Заполняем пространство слева
+                                MDRoundFlatIconButton:
+                                    icon: "account"
+                                    text: "Center"
+                                    pos_hint: {"center_x": 0.5}
+                                    size_hint: None, None
+                                    size: dp(100), dp(100)
+                                Widget:  # Заполняем пространство справа
 
-                            # Пример заполнения содержимым
                             Widget:
                                 size_hint_y: None
-                                height: 500
+                                height: dp(300)  # Задаем отступ между кнопками
+
+                            # Кнопки внизу
+                            MDBoxLayout:
+                                size_hint_y: None
+                                height: dp(100)
+                                padding: dp(10)
+
+                                MDFloatingActionButton:
+                                    icon: "plus"
+                                    text: "Left 1"
+                                    size_hint: None, None
+                                    size: dp(100), dp(100)
+
+                                Widget:  # Заполняем пространство между кнопками
+
+                                MDRoundFlatIconButton:
+                                    icon: "arrow-right"
+                                    text: "Right 1"
+                                    size_hint: None, None
+                                    size: dp(100), dp(100)
+
+                            MDBoxLayout:
+                                size_hint_y: None
+                                height: dp(100)
+                                padding: dp(10)
+
+                                MDRoundFlatIconButton:
+                                    icon: "arrow-left"
+                                    text: "Left 2"
+                                    size_hint: None, None
+                                    size: dp(100), dp(100)
+
+                                Widget:  # Заполняем пространство между кнопками
+
+                                MDRoundFlatIconButton:
+                                    icon: "arrow-right"
+                                    text: "Right 2"
+                                    size_hint: None, None
+                                    size: dp(100), dp(100)
 
                             MDLabel:
                                 text: "End of the content"
