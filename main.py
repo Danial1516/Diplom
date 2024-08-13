@@ -6,7 +6,6 @@ from kivymd.app import MDApp
 from kivymd.toast import toast
 from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, ChatScreen
 from logic.auth import login_user, register_user
-from logic.chat import show_greeting, show_translation, show_lexicon, show_grammar, show_phonetics
 import logging
 from kivymd.uix.pickers import MDDatePicker
 from kivy.core.window import Window
@@ -72,9 +71,6 @@ class LangVoyageApp(MDApp):
 
     def show_user(self):
         toast(f"Logged in as {self.current_user}")
-
-    def on_start(self):
-        show_greeting(self)
 
     def show_date_picker(self):
         date_dialog = MDDatePicker()

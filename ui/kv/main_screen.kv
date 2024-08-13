@@ -7,49 +7,119 @@
     BoxLayout:
         orientation: 'vertical'
 
-        MDScreenManager:
-            id: screen_manager
-            transition: NoTransition()
-
-            HomeScreen:
-                name: 'home'
-            TasksScreen:
-                name: 'tasks'
-            RatingScreen:
-                name: 'rating'
-            NotificationsScreen:
-                name: 'notifications'
-            ChatScreen:
-                name: 'chat'
-            CalendarScreen:
-                name: 'calendar'
 
         MDBottomNavigation:
             size_hint_y: 0.1
             text_color_normal: "lightgrey"
             text_color_active: 0.133, 0.439, 0.702, 1
             selected_color_background: 1, 1, 1, 1
-            panel_color: 0.043, 0.173, 0.282, 1.0
+            panel_color: (37/255, 40/255, 80/255, 1)
             radius: [10, 10, 0, 0]
             use_text: False
 
             MDBottomNavigationItem:
                 name: 'home'
                 icon: 'home'
-                on_tab_press: root.ids.screen_manager.current = 'home'
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    # Верхняя панель с иконкой
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(56)
+                        padding: dp(8)
+                        MDIconButton:
+                            icon: "fire"
+                            theme_icon_color: "Custom"
+                            icon_color: 0.847, 0.208, 0.329, 1
+                            #on_release:
+                        Widget:
+                            size_hint_x: None
+                            width: dp(16)
+
+                    MDScrollView:
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+
+                            # Добавьте ваши виджеты сюда
+                            MDLabel:
+                                text: "Welcome to the Home Screen"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+                            MDLabel:
+                                text: "Scroll down for more content"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+                            # Пример заполнения содержимым
+                            Widget:
+                                size_hint_y: None
+                                height: 500
+
+                            MDLabel:
+                                text: "End of the content"
+                                size_hint_y: None
+                                height: self.texture_size[1]
+                                halign: "center"
+
+
             MDBottomNavigationItem:
                 name: 'tasks'
                 icon: 'book-open-page-variant'
-                on_tab_press: root.ids.screen_manager.current = 'tasks'
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+
             MDBottomNavigationItem:
                 name: 'notifications'
                 icon: 'bell'
-                on_tab_press: root.ids.screen_manager.current = 'notifications'
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "notification"
+                        halign: "center"
+
+
             MDBottomNavigationItem:
                 name: 'rating'
                 icon: 'chart-bell-curve-cumulative'
-                on_tab_press: root.ids.screen_manager.current = 'rating'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "rating"
+                        halign: "center"
+
+
             MDBottomNavigationItem:
                 name: 'chat'
                 icon: 'pencil'
-                on_tab_press: root.ids.screen_manager.current = 'chat'
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "Chat"
+                        halign: "center"
+                    ScrollView:
+                        MDList:
+                            id: chat_list
+                    BoxLayout:
+                        size_hint_y: None
+                        height: dp(56)
+                        padding: dp(10)
+                        spacing: dp(10)
+                        orientation: 'horizontal'
+                        MDTextField:
+                            id: chat_input
+                            hint_text: "Type your message..."
+                            size_hint_x: 0.85
+                        MDIconButton:
+                            icon: 'send'
+                            on_press: app.show_translation()
