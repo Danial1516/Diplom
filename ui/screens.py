@@ -26,8 +26,6 @@ class RatingScreen(MDScreen):
 class NotificationsScreen(MDScreen):
     pass
 
-class ChatScreen(MDScreen):
-    pass
 
 class CalendarScreen(MDScreen):
     pass

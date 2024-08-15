@@ -149,28 +149,7 @@
                 name: 'chat'
                 icon: 'pencil'
 
-                BoxLayout:
-                    orientation: 'vertical'
-                    md_bg_color: 8/255, 37/255, 103/255,1
-                    MDLabel:
-                        text: "Chat"
-                        halign: "center"
-                    ScrollView:
-                        MDList:
-                            id: chat_list
-                    BoxLayout:
-                        size_hint_y: None
-                        height: dp(56)
-                        padding: dp(10)
-                        spacing: dp(10)
-                        orientation: 'horizontal'
-                        MDTextField:
-                            id: chat_input
-                            hint_text: "Type your message..."
-                            size_hint_x: 0.85
-                        MDIconButton:
-                            icon: 'send'
-                            on_press: app.show_translation()
+                ChatScreen:
 
 
 <ElementCard@MDCard>:

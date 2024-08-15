@@ -4,12 +4,14 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 from kivymd.toast import toast
-from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, ChatScreen
+from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen
 from logic.auth import login_user, register_user
+from logic.chat import ChatScreen
 import logging
 from kivymd.uix.pickers import MDDatePicker
 from kivy.core.window import Window
 from googletrans import Translator
+from kivy.core.text import LabelBase
 import os
 
 logging.basicConfig(level=logging.DEBUG)
@@ -40,6 +42,7 @@ class LangVoyageApp(MDApp):
             sm.add_widget(RatingScreen(name='rating'))
             sm.add_widget(NotificationsScreen(name='notifications'))
             sm.add_widget(ChatScreen(name='chat'))
+
 
             logging.info("Все экраны загружены успешно.")
             return sm
@@ -77,4 +80,6 @@ class LangVoyageApp(MDApp):
         date_dialog.open()
 
 if __name__ == '__main__':
+    LabelBase.register(name="Poppins", fn_regular="assets/fonts/beer_money.ttf")
+    LabelBase.register(name="BPoppins", fn_regular="assets/fonts/Christmas_ScriptC.ttf")
     LangVoyageApp().run()
