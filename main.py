@@ -7,6 +7,7 @@ from kivymd.toast import toast
 from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen
 from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
+from logic.learn import ElevatedWidget
 import logging
 from kivymd.uix.pickers import MDDatePicker
 from kivy.core.window import Window
