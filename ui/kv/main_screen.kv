@@ -21,7 +21,7 @@
 
                 MDBoxLayout:
                     orientation: 'vertical'
-                    md_bg_color: 8/255, 37/255, 103/255,1
+                    md_bg_color: 28/255, 140/255, 140/255, 1
 
                     BoxLayout:
                         size_hint_y: .1
@@ -53,14 +53,14 @@
 
                                 ElementCard:
                                     image:"assets/images/book.png"
-                                    text:"Calender"
+                                    text:"Calender" #practice with time
                                     subtext:""
                                     items_count:""
                                     size_hint_x: 0.5
 
                                 ElementCard:
                                     image:"assets/images/story.png"
-                                    text:"Groceries"
+                                    text:"Groceries"  # practice with cards
                                     subtext:""
                                     items_count:""
                                     size_hint_x: 0.5
@@ -74,7 +74,7 @@
 
                                 ElementCard:
                                     image:"assets/images/time.png"
-                                    text:"Location"
+                                    text:"Location"  # practice with time tasks(rating)
                                     subtext:""
                                     items_count:""
                                     size_hint_x: 0.5
@@ -106,6 +106,7 @@
                                     subtext:""
                                     items_count:""
                                     size_hint_x: 0.5
+                                    on_press: print("on_press")
 
                             MDLabel:
                                 text: "End of the content"
@@ -152,7 +153,7 @@
 
 
 <ElementCard@MDCard>:
-    md_bg_color:69/255,55/255,86/255,1
+    md_bg_color: 255/255, 111/255, 97/255, 1
     padding:dp(15)
     spacing:dp(15)
     ripple_behavior: True
