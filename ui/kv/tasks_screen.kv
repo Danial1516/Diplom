@@ -1,40 +1,54 @@
 # ui/kv/tasks_screen.kv
 
+<SpecCard>:
+    md_bg_color: 255/255, 111/255, 97/255, 1
+    padding: dp(15)
+    ripple_behavior: True
+    elevation: 2
+    shadow_radius: 3
+    orientation: 'vertical'
 
+    MDLabel:
+        text: root.text
+        halign: 'center'
+        valign: 'middle'
+        font_name: 'Intro'
+        size_hint_y: None
+        height: self.texture_size[1]  # Height based on the text size
 
 <TasksScreen>:
     MDScreen:
         md_bg_color: 28/255, 140/255, 140/255, 1
-        ElevatedWidget:
-            pos_hint: {'center_x': .5, 'center_y': .8}
-            size_hint: None, None
-            md_bg_color: 255/255, 111/255, 97/255, 1
-            size: dp(300), dp(50)
-            radius: dp(18)
-            elevation: 4.5
+        FloatLayout:
+            SpecCard:
+                size_hint: None, None
+                size: dp(300), dp(50)  # Fixed size for each card
+                pos_hint: {"center_x": 0.5, "center_y": 0.8}  # Position 1
+                elevation: 4
+                shadow_radius: 8
+                text: "Час і часові конструкції"
+                on_press: print('11')
 
+            SpecCard:
+                size_hint: None, None
+                size: dp(300), dp(50)  # Fixed size for each card
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}  # Position 2
+                elevation: 4
+                shadow_radius: 8
+                text: "Граматичні структури"
 
+            SpecCard:
+                size_hint: None, None
+                size: dp(300), dp(50)  # Fixed size for each card
+                pos_hint: {"center_x": 0.5, "center_y": 0.4}  # Position 3
+                elevation: 4
+                shadow_radius: 8
+                text: "Вираження уподобань"
 
-        ElevatedWidget:
-            pos_hint: {'center_x': .5, 'center_y': .6}
-            size_hint: None, None
-            md_bg_color: 255/255, 111/255, 97/255, 1
-            size: dp(300), dp(50)
-            radius: dp(18)
-            elevation: 4.5
-
-        ElevatedWidget:
-            pos_hint: {'center_x': .5, 'center_y': .4}
-            size_hint: None, None
-            md_bg_color: 255/255, 111/255, 97/255, 1
-            size: dp(300), dp(50)
-            radius: dp(18)
-            elevation: 4.5
-
-        ElevatedWidget:
-            pos_hint: {'center_x': .5, 'center_y': .2}
-            size_hint: None, None
-            md_bg_color: 255/255, 111/255, 97/255, 1
-            size: dp(300), dp(50)
-            radius: dp(18)
-            elevation: 4.5
+            SpecCard:
+                size_hint: None, None
+                size: dp(300), dp(50)  # Fixed size for each card
+                pos_hint: {"center_x": 0.5, "center_y": 0.2}  # Position 4
+                elevation: 4
+                shadow_radius: 8
+                text: "Cпеціальні фрази/слова"
