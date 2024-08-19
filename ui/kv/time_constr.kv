@@ -1,20 +1,95 @@
-# ui/kv/time_constr.kv
-
 <TimeConstructionsScreen>:
     MDScreen:
         md_bg_color: 28/255, 140/255, 140/255, 1
 
         FloatLayout:
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height  # Установите высоту на основе содержимого
+                    padding: [dp(30), dp(50), dp(30), dp(30)]  # Отступы для всего содержимого
+                    spacing: dp(40)  # Расстояние между карточками
+
+                    # Карточки с текстом
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Present Simple"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Present Continuous"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Present Perfect "
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Present Perfect Continuous"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Past Simple"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Past Continuous"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Past Perfect"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Past Perfect Continuous"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Future Simple"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Future Continuous"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Future Perfect"
+
+                    SpecCard:
+                        size_hint: None, None
+                        size: dp(300), dp(50)
+                        text: "Future Perfect Continuous"
+
+            # Кнопка возврата
             MDIconButton:
                 icon: 'arrow-left'
                 pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
                 size_hint: None, None
-                size: dp(76), dp(76)
+                size: dp(56), dp(56)  # Размер кнопки возврата
                 on_release: app.root.current = 'tasks'  # Переход на TasksScreen
 
-            MDLabel:
-                text: "Час і часові конструкції"
-                halign: 'center'
-                valign: 'center'
-                font_style: 'H4'
-                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+
+
+
+
+
+
