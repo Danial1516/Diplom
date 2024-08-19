@@ -1,7 +1,7 @@
 # main.py
 
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, FadeTransition
+from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
 from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen
@@ -36,7 +36,7 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'chat_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'time_constr.kv'))
 
-            sm = ScreenManager(transition=FadeTransition())
+            sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
             sm.add_widget(RegisterScreen(name='register'))
             sm.add_widget(MainScreen(name='main'))
@@ -54,6 +54,9 @@ class LangVoyageApp(MDApp):
         except Exception as e:
             logging.error(f"Ошибка при загрузке экранов: {e}")
             return None
+
+    def change_screen_item(self, screen_name):
+        self.root.current = screen_name
 
     def login(self):
         email = self.root.get_screen('login').ids.login_email.text

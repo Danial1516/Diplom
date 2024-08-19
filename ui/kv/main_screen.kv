@@ -4,152 +4,156 @@
 
 <MainScreen>:
     name: 'main'
-    BoxLayout:
-        orientation: 'vertical'
+    ScreenManager:
+        id: screen_manager
+        Screen:
+            name: 'bottom_nav'
+            BoxLayout:
+                orientation: 'vertical'
 
-        MDBottomNavigation:
-            size_hint_y: 0.1
-            text_color_normal: "lightgrey"
-            text_color_active: 0.133, 0.439, 0.702, 1
-            selected_color_background: 1, 1, 1, 1
-            panel_color: (0/255, 0/255, 62/255, 1)
-            use_text: False
+                MDBottomNavigation:
+                    size_hint_y: 0.1
+                    text_color_normal: "lightgrey"
+                    text_color_active: 0.133, 0.439, 0.702, 1
+                    selected_color_background: 1, 1, 1, 1
+                    panel_color: (0/255, 0/255, 62/255, 1)
+                    use_text: False
 
-            MDBottomNavigationItem:
-                name: 'home'
-                icon: 'home'
+                    MDBottomNavigationItem:
+                        name: 'home'
+                        icon: 'home'
 
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    md_bg_color: 28/255, 140/255, 140/255, 1
-
-                    BoxLayout:
-                        size_hint_y: .1
-                        height: dp(56)
-                        padding: dp(8)
-                        MDIconButton:
-                            icon: "fire"
-                            theme_icon_color: "Custom"
-                            icon_color: 0.847, 0.208, 0.329, 1
-
-                        Widget:
-                            size_hint_x: None
-                            width: dp(16)
-
-                    MDScrollView:
                         MDBoxLayout:
                             orientation: 'vertical'
-                            size_hint_y: None
-                            height: self.minimum_height  # Установите высоту на основе содержимого
-                            padding:[dp(15),dp(15),dp(15),dp(35)]
-                            spacing: dp(15)
+                            md_bg_color: 28/255, 140/255, 140/255, 1
 
-                            # Первая строка кнопок
                             BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(15)
-                                size_hint_y: None
-                                height: dp(150)
+                                size_hint_y: .1
+                                height: dp(56)
+                                padding: dp(8)
+                                MDIconButton:
+                                    icon: "fire"
+                                    theme_icon_color: "Custom"
+                                    icon_color: 0.847, 0.208, 0.329, 1
 
-                                ElementCard:
-                                    image:"assets/images/book.png"
-                                    text:"Calender" #practice with time
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
+                                Widget:
+                                    size_hint_x: None
+                                    width: dp(16)
 
-                                ElementCard:
-                                    image:"assets/images/story.png"
-                                    text:"Groceries"  # practice with cards
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
+                            MDScrollView:
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height  # Установите высоту на основе содержимого
+                                    padding:[dp(15),dp(15),dp(15),dp(35)]
+                                    spacing: dp(15)
 
-                            # Вторая строка кнопок
-                            BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(15)
-                                size_hint_y: None
-                                height: dp(150)
+                                    # Первая строка кнопок
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        spacing: dp(15)
+                                        size_hint_y: None
+                                        height: dp(150)
 
-                                ElementCard:
-                                    image:"assets/images/time.png"
-                                    text:"Location"  # practice with time tasks(rating)
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
+                                        ElementCard:
+                                            image:"assets/images/book.png"
+                                            text:"Calender" #practice with time
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
 
-                                ElementCard:
-                                    image:"assets/images/krest.png"
-                                    text:"Activity"
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
+                                        ElementCard:
+                                            image:"assets/images/story.png"
+                                            text:"Groceries"  # practice with cards
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
 
-                            # Третья строка кнопок
-                            BoxLayout:
-                                orientation: 'horizontal'
-                                spacing: dp(15)
-                                size_hint_y: None
-                                height: dp(150)
+                                    # Вторая строка кнопок
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        spacing: dp(15)
+                                        size_hint_y: None
+                                        height: dp(150)
 
-                                ElementCard:
-                                    image:"assets/images/listen.png"
-                                    text:"To Do"
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
+                                        ElementCard:
+                                            image:"assets/images/time.png"
+                                            text:"Location"  # practice with time tasks(rating)
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
 
-                                ElementCard:
-                                    image:"assets/images/ship.png"
-                                    text:"Setting"
-                                    subtext:""
-                                    items_count:""
-                                    size_hint_x: 0.5
-                                    on_press: print("on_press")
+                                        ElementCard:
+                                            image:"assets/images/krest.png"
+                                            text:"Activity"
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
 
+                                    # Третья строка кнопок
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        spacing: dp(15)
+                                        size_hint_y: None
+                                        height: dp(150)
+
+                                        ElementCard:
+                                            image:"assets/images/listen.png"
+                                            text:"To Do"
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
+
+                                        ElementCard:
+                                            image:"assets/images/ship.png"
+                                            text:"Setting"
+                                            subtext:""
+                                            items_count:""
+                                            size_hint_x: 0.5
+                                            on_press: print("on_press")
+
+                                    MDLabel:
+                                        text: "End of the content"
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+                                        halign: "center"
+
+                    MDBottomNavigationItem:
+                        name: 'tasks'
+                        icon: 'book-open-page-variant'
+
+                        TasksScreen:
+
+
+
+                    MDBottomNavigationItem:
+                        name: 'notifications'
+                        icon: 'bell'
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            md_bg_color: 8/255, 37/255, 103/255,1
                             MDLabel:
-                                text: "End of the content"
-                                size_hint_y: None
-                                height: self.texture_size[1]
+                                text: "notification"
                                 halign: "center"
 
-            MDBottomNavigationItem:
-                name: 'tasks'
-                icon: 'book-open-page-variant'
 
-                TasksScreen:
-
-
-
-            MDBottomNavigationItem:
-                name: 'notifications'
-                icon: 'bell'
-
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    md_bg_color: 8/255, 37/255, 103/255,1
-                    MDLabel:
-                        text: "notification"
-                        halign: "center"
+                    MDBottomNavigationItem:
+                        name: 'rating'
+                        icon: 'chart-bell-curve-cumulative'
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            md_bg_color: 8/255, 37/255, 103/255,1
+                            MDLabel:
+                                text: "rating"
+                                halign: "center"
 
 
-            MDBottomNavigationItem:
-                name: 'rating'
-                icon: 'chart-bell-curve-cumulative'
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    md_bg_color: 8/255, 37/255, 103/255,1
-                    MDLabel:
-                        text: "rating"
-                        halign: "center"
+                    MDBottomNavigationItem:
+                        name: 'chat'
+                        icon: 'pencil'
 
-
-            MDBottomNavigationItem:
-                name: 'chat'
-                icon: 'pencil'
-
-                ChatScreen:
+                        ChatScreen:
 
 
 <ElementCard@MDCard>:
