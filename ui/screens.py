@@ -26,6 +26,8 @@ class RatingScreen(MDScreen):
 class NotificationsScreen(MDScreen):
     pass
 
+class TimeConstructionsScreen(MDScreen):
+    pass
 
 class CalendarScreen(MDScreen):
     pass

@@ -1,0 +1,20 @@
+# ui/kv/time_constr.kv
+
+<TimeConstructionsScreen>:
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+                size_hint: None, None
+                size: dp(76), dp(76)
+                on_release: app.root.current = 'tasks'  # Переход на TasksScreen
+
+            MDLabel:
+                text: "Час і часові конструкції"
+                halign: 'center'
+                valign: 'center'
+                font_style: 'H4'
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
