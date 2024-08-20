@@ -35,6 +35,9 @@ class PresentSimpleScreen(MDScreen):
 class PresentPerfectScreen(MDScreen):
     pass
 
+class PastSimpleScreen(MDScreen):
+    pass
+
 class PresentPerfectContinuousScreen(MDScreen):
     pass
 
