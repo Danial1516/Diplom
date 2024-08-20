@@ -1,0 +1,20 @@
+<PresentSimpleScreen>:
+    name: 'present_simple'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+                size_hint: None, None
+                size: dp(56), dp(56)  # Размер кнопки возврата
+                on_release: app.root.current = 'time_c'

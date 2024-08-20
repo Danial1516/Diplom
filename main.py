@@ -4,7 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
-from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen
+from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen
 from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
@@ -35,6 +35,7 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'notifications_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'chat_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'time_constr.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_simple_screen.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -46,6 +47,7 @@ class LangVoyageApp(MDApp):
             sm.add_widget(NotificationsScreen(name='notifications'))
             sm.add_widget(ChatScreen(name='chat'))
             sm.add_widget(TimeConstructionsScreen(name='time_c'))
+            sm.add_widget(PresentSimpleScreen(name='present_simple'))
 
 
             logging.info("Все экраны загружены успешно.")
