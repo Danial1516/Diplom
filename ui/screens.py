@@ -54,6 +54,13 @@ class PastContinuousScreen(MDScreen):
     pass
 
 
+class FuturePerfectContinuousScreen(MDScreen):
+    pass
+
+class FuturePerfectScreen(MDScreen):
+    pass
+
+
 class PresentPerfectContinuousScreen(MDScreen):
     pass
 
