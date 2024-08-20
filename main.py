@@ -4,7 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
-from ui.screens import LoginScreen, RegisterScreen, MainScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
+from ui.screens import LoginScreen, RegisterScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
 from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
@@ -37,6 +37,16 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'time_constr.kv'))
             Builder.load_file(os.path.join(kv_path, 'present_simple_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'present_continuous_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_continuous_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -50,6 +60,17 @@ class LangVoyageApp(MDApp):
             sm.add_widget(TimeConstructionsScreen(name='time_c'))
             sm.add_widget(PresentSimpleScreen(name='present_simple'))
             sm.add_widget(PresentContinuousScreen(name='present_continuous'))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectContinuousScreen(name="present_perfect_continuous")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+
 
 
             logging.info("Все экраны загружены успешно.")
