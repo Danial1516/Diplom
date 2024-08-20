@@ -11,6 +11,45 @@
                 size_hint: 1, 1
                 pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(80)
+                        md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки 0, 0.5, 0.5, 1
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Теперішній простий час(Present Simple)"
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(24)
+
+                    # Поле для ввода текста
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height  # Установите необходимую высоту
+                        md_bg_color: 0, 0.5, 0.5, 1  # Цвет фона карточки
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "[color=90EE90]Present simple[/color] — це граматичний час, який вважається одним із найпростіших для розуміння, він існує в усіх мовах.\n\n Ми використовуємо Present simple у випадках, коли: \n\n [color=ffffff]Говоримо про загальні речі або про факти[/color] \n Наприклад: \n\n The Queen of England [color=FF6F61]lives[/color] in Buckingham Palace — Королева Англії живе в Букінгемському палаці. \n Nurses [color=FF6F61]look[/color] after patients in hospitals – Медсестри доглядають за пацієнтами в лікарнях.\n  The earth [color=FF6F61]goes[/color] around the sun – Земля обертається навколо сонця. \n A dog [color=FF6F61]has[/color] four legs – У собаки чотири ноги.  \n\n[color=ffffff]Говоримо про повторювані, регулярні дії в теперішньому часі, які відбуваються взагалі (не в момент мовлення), і майбутні події, які відбуваються за планом або розкладом[/color] \n Наприклад: \n\n The train to Prague [color=FF6F61]leaves[/color] every hour – Потяг до Праги відправляється щогодини. \n Jane [color=FF6F61]sleeps[/color] eight hours every night during the week – Джейн спить по вісім годин щоночі протягом тижня. \nThe coffeehouse [color=FF6F61]opens[/color] at 9:00 in the morning – Кав’ярня відкривається о 9:00 ранку.\n\n[color=ffffff]Описуємо звички[/color]\n Наприклад:\n\n I usually [color=FF6F61]go[/color] away on the weekends – На вихідні я зазвичай кудись їду.\n Carol [color=FF6F61]brushes[/color] her teeth twice a day – Керол чистить зуби двічі на день. \n They [color=FF6F61]travel[/color] to their country house every weekend – Кожні вихідні вони їздять на дачу. \n\n Щоб [color=90EE90]сформувати стверджувальне речення[/color], необхідно використати дієслово без часточки [color=FF6F61]«to»[/color] і додати до нього закінчення [color=FF6F61]-s/es[/color] для третьої особи однини (він, вона, воно). Дієслово йде після підмета (особи, яка виконує дію).\nРозгляньмо декілька прикладів: \n\n I [color=FF6F61]drive[/color] to work every day – Я щодня їжджу на роботу.\n He [color=FF6F61]drives[/color] to another city every day – Він щодня їздить в інше місто.\n\nУ першому реченні ми просто використали дієслово (інфінітив без «to»), а в другому реченні було додано закінчення –s, оскільки суб’єктом, який виконує дію, є «він». \n\n [color=90EE90]У заперечних реченнях і питаннях[/color] використовується допоміжне дієслово [color=FF6F61]do/does[/color] (+ not, це заперечення). \n\n [color=90EE90]У питаннях[/color] слова [color=FF6F61]do[/color] або [color=FF6F61]does[/color] виноситься на початок речення. [color=FF6F61]Does[/color] використовується, якщо підметом є він, вона або воно. Для всіх інших використовуйте [color=FF6F61]do[/color].\n\n Крім того, в цих випадках, закінчення [color=FF6F61]–s/es[/color] у дієслові не використовується для підметів третьої особи однини. \nНаприклад: \n\n [color=FF6F61]Do[/color] they [color=FF6F61]go[/color] to school on weekends? – Вони ходять до школи на вихідних? \n[color=FF6F61]Do[/color] you [color=FF6F61]need[/color] a dictionary? – Вам потрібен словник? \n[color=FF6F61]  Does[/color] he like pizza? – Він любить піцу? \n\n Щоб дати граматично правильну відповідь, не забудьте відповідати на запитання так, як вони були поставлені. \nЯкщо запитання починається словами [color=FF6F61]«Do you…?»[/color] тоді дайте відповідь [color=FF6F61]«Yes, I do»[/color] або [color=FF6F61]«No, I don’t»[/color] (= do not). Якщо запитання починається з [color=FF6F61]«Does he/she/it…?»[/color] тоді дайте відповідь [color=FF6F61]«Yes, he/she/it does»[/color] або [color=FF6F61]«No, he/she/it doesn’t»[/color] (= does not). \n\n Але якщо запитання починається з [color=FF6F61]who(хто)[/color], [color=FF6F61]what (що)[/color], [color=FF6F61]where (де)[/color], [color=FF6F61]when (коли)[/color], [color=FF6F61]why (чому)[/color] чи [color=FF6F61]how (як)[/color], короткого «так» чи «ні» буде не досить. \n\nЩоб утворити заперечні речення, до допоміжного дієслова необхідно додати [color=FF6F61]not[/color]. \nПорядок слів виглядає таким чином: [color=FF6F61]підмет + do/does not + головне дієслово + решта речення.[/color] \nНаприклад: \n\n I [color=FF6F61]don’t[/color] like this T-shirt – Мені не подобається ця футболка. \nShe [color=FF6F61]doesn’t[/color] go with us to the cinema – Вона не ходить з нами в кіно. "
+                            font_name: "Clearsan"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            markup: True
+                            size_hint_y: None
+                            height: self.texture_size[1] # [color=ffffff]Подлежащее[/color]
 
             MDIconButton:
                 icon: 'arrow-left'

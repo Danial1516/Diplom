@@ -94,7 +94,8 @@ if __name__ == '__main__':
     LabelBase.register(name="Poppins", fn_regular="assets/fonts/beer_money.ttf")
     LabelBase.register(name="BPoppins", fn_regular="assets/fonts/Christmas_ScriptC.ttf")
     LabelBase.register(name="Boom", fn_regular="assets/fonts/Boomboom.otf")
-    LabelBase.register(name="Clearsan", fn_regular="assets/fonts/ClearSans-Medium.ttf")
+    LabelBase.register(name="Clearsan", fn_regular="assets/fonts/ClearSans-Medium.ttf")  # defolt text
     LabelBase.register(name="Foglih", fn_regular="assets/fonts/FoglihtenNo06_076.otf")
     LabelBase.register(name="Intro", fn_regular="assets/fonts/Intro.otf")
+    LabelBase.register(name="juneg", fn_regular="assets/fonts/junegull rg.otf")  # заголовки
     LangVoyageApp().run()
