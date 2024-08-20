@@ -1,0 +1,61 @@
+# past_perfect
+<PastPerfectScreen>:
+    name: 'past_perfect'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(80)
+                        md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки 0, 0.5, 0.5, 1
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Минулий доконаний час(Past Perfect)"
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(24)
+
+                    # Поле для ввода текста
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height  # Установите необходимую высоту
+                        md_bg_color: 0, 0.5, 0.5, 1  # Цвет фона карточки
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: '124'
+                            font_name: "Clearsan"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            markup: True
+                            size_hint_y: None
+                            height: self.texture_size[1] # [color=ffffff]Подлежащее[/color]
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+                size_hint: None, None
+                size: dp(56), dp(56)  # Размер кнопки возврата
+                on_release: app.root.current = 'time_c'
+

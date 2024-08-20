@@ -4,7 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
-from ui.screens import LoginScreen, RegisterScreen,PastSimpleScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
+from ui.screens import LoginScreen, RegisterScreen,PastSimpleScreen,PastContinuousScreen, FutureContinuousScreen, FutureSimpleScreen, PastPerfectScreen, PastPerfectContinuousScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
 from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
@@ -40,11 +40,11 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'present_perfect_continuous_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'past_simple.kv'))
-            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
-            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
-            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
-            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
-            Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'future_continuous_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'future_simple_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'past_continuous_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'past_perfect_continuous.kv'))
+            Builder.load_file(os.path.join(kv_path, 'past_perfect_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'present_perfect_screen.kv'))
 
@@ -63,11 +63,11 @@ class LangVoyageApp(MDApp):
             sm.add_widget((PresentPerfectScreen(name="present_perfect")))
             sm.add_widget((PresentPerfectContinuousScreen(name="present_perfect_continuous")))
             sm.add_widget((PastSimpleScreen(name="past_simple")))
-            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
-            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
-            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
-            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
-            sm.add_widget((PresentPerfectScreen(name="present_perfect")))
+            sm.add_widget((FutureContinuousScreen(name="future_continuous")))
+            sm.add_widget((FutureSimpleScreen(name="future_simple")))
+            sm.add_widget((PastPerfectContinuousScreen(name="past_perfect_continuous")))
+            sm.add_widget((PastPerfectScreen(name="past_perfect")))
+            sm.add_widget((PastContinuousScreen(name="past_continuous")))
             sm.add_widget((PresentPerfectScreen(name="present_perfect")))
             sm.add_widget((PresentPerfectScreen(name="present_perfect")))
 
