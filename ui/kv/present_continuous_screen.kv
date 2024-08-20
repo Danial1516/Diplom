@@ -1,0 +1,58 @@
+<PresentContinuousScreen>:
+    name: 'present_continuous'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(80)
+                        md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки 0, 0.5, 0.5, 1
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Теперішній тривалий час(Present Continuous)"
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(24)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height  # Установите необходимую высоту
+                        md_bg_color: 0, 0.5, 0.5, 1  # Цвет фона карточки
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "[color=90EE90]Present Continuous[/color] — це один з часів англійської мови, що використовується для вираження дії, що відбувається в даний момент розмови або протягом певного періоду часу, що включає даний момент.\n\n Форму Present Continuous (теперішній тривалий час) утворюють допоміжне дієслово [color=FF6F61]to be[/color] в Present Tense [color=FF6F61](am, is, are)[/color] та основне дієслово з закінченням [color=FF6F61]-ing[/color].\nНаприклад:\n\n[color=FF6F61]I am studying English now.[/color] (Я зараз вивчаю англійську мову)\n[color=FF6F61]She is working on a new project this week.[/color] (Вона працює над новим проектом на цьому тижні)\n[color=FF6F61]They are watching a movie at the moment.[/color] (Вони зараз дивляться фільм)\n\n Також Present Continuous може використовуватись для вираження планів на майбутнє. У цьому випадку дієслово [color=FF6F61]to be[/color] використовується в майбутньому часі [color=FF6F61](will be, going to be)[/color], а основне дієслово залишається в формі [color=FF6F61]-ing[/color].\nНаприклад:\n\nWe [color=FF6F61]are going to be[/color] traveling to Europe next month. (Ми збираємося поїхати в Європу наступного місяця)\nHe [color=FF6F61]will be studying[/color] for his exams all weekend. (Він буде готуватися до іспитів всі вихідні)\n\n Згідно Present Continuous правил, ми використовуємо цей час:\n\n [color=ffffff]коли говоримо про дію, яка відбувається (або не відбувається) прямо зараз, в момент мовлення. Тут можуть бути наступні Present Continuous слова-маркери: [color=FF6F61]«now» (зараз), «at the moment» (в даний момент)[/color]. Також, ми можемо застосовувати цей час для двох дій, які відбуваються одночасно в теперішньому.[/color]\n\n [color=FF6F61]She's drinking tea now.[/color] – Вона зараз п’є чай.\n[color=FF6F61]He's not playing computer games now because he's sleeping.[/color] – Зараз він не грає в комп’ютерні ігри, тому що він спить.\n\n [color=ffffff]коли дія відбувається в теперішньому, але не в конкретний момент мовлення.[/color]\n\nSomething is happening around [color=FF6F61]now[/color]. В цьому випадку [color=FF6F61]«now»[/color] має значення не тільки в цю секунду, але й сьогодні, а також на цьому тижні, в цьому місяці або навіть в цьому році.\n[color=FF6F61]I am reading an interesting book.[/color] – Я читаю цікаву книгу (я почав її читати до моменту мовлення і буду читати ще якийсь час, але конкретно зараз я не зайнятий читанням).\n[color=FF6F61]I usually drink tea, but today I’m drinking coffee.[/color] – Я зазвичай п’ю чай, та сьогодні я п’ю каву.\n\n [color=ffffff]коли говоримо про дію, яка розвивається і змінюється. На таку дію можуть вказувати слова [color=FF6F61]«change» (змінюватись), «get/become» (ставати), «rise» (підніматися), «fall» (падати), «grow» (рости), «improve» (покращуватися), «begin/start» (починатися)[/color].[/color]\n\n [color=FF6F61]Your English is getting better.[/color] – Твоя англійська стає кращою.\n[color=FF6F61]Our country is developing.[/color] – Наша країна розвивається.\n\n[color=ffffff]коли говоримо про найближче майбутнє, запланованих діях та планах. Ми використовуємо час Present Continuous тільки з тими діями, які вже твердо вирішили виконати. Present continuous допоміжні слова: [color=FF6F61]«this/next week» (на цьому/наступному тижні), «this/next weekend» (в ці/наступні вихідні), «this/next year» (в цьому/наступному році), «tonight» (ввечері), «today» (сьогодні), «tomorrow» (завтра)[/color].[/color]\n\n[color=FF6F61]I am having a lesson tomorrow at 4.10 p.m.[/color] – У мене завтра заняття о 16:00 (я вже спланувала дію і знаю всі подробиці).\n [color=FF6F61]We are going to the theatre next Monday.[/color] – Ми йдемо до театру у наступний понедiлок (ми знаємо назву спектаклю, який театр, час, купили білети та таке iнше).\n\n[color=ffffff] коли хочемо показати незадоволення, обурення, роздратування. В цих випадках ми використовуємо слова [color=FF6F61]always (завжди), constantly(постійно), all the time (весь час), forever (вічно)[/color], щоби показати, що людина регулярно робить те, що нам не подобається і що нас це дратує.[/color]\n\n [color=FF6F61]They are always complaining.[/color] – Вони завжди скаржаться.\n [color=FF6F61]He's constantly biting his nails.[/color] – Він постійно кусає свої нігті.\n\nЯк ви могли зауважити, форма «Present Continuous Tense» наступна:\n\n [color=FF6F61]Стверджувальне речення: Підмет + дієслово «to be» + V-ing\n Питальне речення: Дієслово «to be» + підмет + V-ing?\n Заперечне речення: No + підмет + дієслово «to be» + not + V-ing[/color]\n\n Приклади:\n  [color=ffffff]Дія, що відбувається прямо зараз:[/color]\n\n [color=FF6F61]She is talking on the phone.[/color]\n Вона говорить по телефону.\n(Дія відбувається в даний момент.)\n\n[color=FF6F61]They are typing emails.[/color]\nВони пишуть електронні листи.\n(Вони роблять це прямо зараз.)\n\n[color=FF6F61]I am drinking coffee.[/color]\nЯ п'ю каву.\n(Дія відбувається в момент розмови.)\n\n[color=ffffff]Дія, що відбувається в поточний період часу[/color]\n\n[color=FF6F61]He is taking a course in graphic design this semester.[/color]\n Він проходить курс з графічного дизайну цього семестру.\n (Дія відбувається протягом поточного періоду часу.)\n\n [color=FF6F61]We are working on a new project at work.[/color]\nМи працюємо над новим проектом на роботі.\n(Процес триває деякий час.)\n\n[color=FF6F61]She is learning how to play the guitar.[/color]\nВона навчається грати на гітарі.\n(Заняття триває протягом часу.)\n\n[color=ffffff]Майбутня дія[/color]\n\n[color=FF6F61]I am traveling to Paris next month.[/color]\nЯ поїду до Парижа наступного місяця.\n(Запланована дія в майбутньому.)\n\n[color=FF6F61]They are moving to a new house next week.[/color]\nВони переїжджають до нового будинку наступного тижня.\n (Дія, яка відбудеться найближчим часом.)\n\n [color=FF6F61]We are having a meeting tomorrow.[/color]\n У нас буде зустріч завтра\n(Запланована подія.)\n\n [color=ffffff]Тимчасові ситуації[/color]\n\n[color=FF6F61]The team is testing the new software before the official launch.[/color]\n Команда тестує нове програмне забезпечення перед офіційним запуском.\n(Процес перевірки перед остаточним результатом.)\n\n [color=FF6F61]I am temporarily working from home because of the renovation in the office.[/color]\nЯ тимчасово працюю з дому через ремонт в офісі.\n(Дія, що відбувається тимчасово.)\n\n Основна відмінність між [color=90EE90]Present Continuous[/color] та [color=90EE90]Present Simple[/color] полягає в тому, що Present Continuous використовується для опису дій, які відбуваються в даний момент або в момент говоріння, тоді як Present Simple використовується для опису регулярних або загальних дій. "
+                            font_name: "Clearsan"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            markup: True
+                            size_hint_y: None
+                            height: self.texture_size[1] # [color=ffffff]Подлежащее[/color]
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+                size_hint: None, None
+                size: dp(56), dp(56)  # Размер кнопки возврата
+                on_release: app.root.current = 'time_c'
