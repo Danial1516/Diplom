@@ -60,6 +60,14 @@ class FuturePerfectContinuousScreen(MDScreen):
 class FuturePerfectScreen(MDScreen):
     pass
 
+class ExpresPreferencesScreen(MDScreen):
+    pass
+
+class SpecialPhrasesWordsScreen(MDScreen):
+    pass
+
+class GrammaScreen(MDScreen):
+    pass
 
 class PresentPerfectContinuousScreen(MDScreen):
     pass

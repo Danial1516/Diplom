@@ -4,7 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
-from ui.screens import LoginScreen, RegisterScreen, FuturePerfectScreen, FuturePerfectContinuousScreen,PastSimpleScreen,PastContinuousScreen, FutureContinuousScreen, FutureSimpleScreen, PastPerfectScreen, PastPerfectContinuousScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
+from ui.screens import LoginScreen, RegisterScreen, SpecialPhrasesWordsScreen, ExpresPreferencesScreen, FuturePerfectScreen, GrammaScreen, FuturePerfectContinuousScreen,PastSimpleScreen,PastContinuousScreen, FutureContinuousScreen, FutureSimpleScreen, PastPerfectScreen, PastPerfectContinuousScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
 from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
@@ -47,6 +47,9 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'past_perfect_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'future_perfect_continuous_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'future_perfect_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'gramm_screen.kv'))
+            Builder.load_file(os.path.join(kv_path, 'expression_of_preferences.kv'))
+            Builder.load_file(os.path.join(kv_path, 'spec_phrases_words.kv '))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -70,7 +73,9 @@ class LangVoyageApp(MDApp):
             sm.add_widget((PastContinuousScreen(name="past_continuous")))
             sm.add_widget((FuturePerfectScreen(name="future_perfect")))
             sm.add_widget((FuturePerfectContinuousScreen(name="future_perfect_continuous")))
-
+            sm.add_widget((GrammaScreen(name="gramm_struct")))
+            sm.add_widget((ExpresPreferencesScreen(name="expres_preferences")))
+            sm.add_widget((SpecialPhrasesWordsScreen(name="spec_phrases_words")))
 
 
             logging.info("Все экраны загружены успешно.")
