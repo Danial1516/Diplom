@@ -9,6 +9,8 @@ from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
 from logic.task import SpecCard
+from logic.listening import ListenScreen
+from logic.сhoose_lvl_listen import ChooseLvlListenScreen
 import logging
 from kivymd.uix.pickers import MDDatePicker
 from kivy.core.window import Window
@@ -50,6 +52,8 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'gramm_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'expression_of_preferences.kv'))
             Builder.load_file(os.path.join(kv_path, 'spec_phrases_words.kv '))
+            Builder.load_file(os.path.join(kv_path, 'listening.kv'))
+            Builder.load_file(os.path.join(kv_path, 'chose_lvl_list.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -76,6 +80,8 @@ class LangVoyageApp(MDApp):
             sm.add_widget((GrammaScreen(name="gramm_struct")))
             sm.add_widget((ExpresPreferencesScreen(name="expres_preferences")))
             sm.add_widget((SpecialPhrasesWordsScreen(name="spec_phrases_words")))
+            sm.add_widget((ListenScreen(name="listen_screen")))
+            sm.add_widget((ChooseLvlListenScreen(name="choose_lvl_listen")))
 
 
             logging.info("Все экраны загружены успешно.")

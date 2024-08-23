@@ -1,0 +1,94 @@
+<ListenScreen>:
+    name: 'listen_screen'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(20), dp(40), dp(20), dp(30)]
+                spacing: dp(20)
+                pos_hint: {"top": 1}
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(80)
+                    md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки 0, 0.5, 0.5, 1
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"top": 0.95}
+
+                    MDLabel:
+                        text: "Аудіювання"
+                        font_name: "juneg"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(24)
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_x: 0.5
+                    size_hint_y: None
+                    height: self.minimum_height  # Установите необходимую высоту
+                    md_bg_color: 255/255, 127/255, 80/255, 1  # Цвет фона карточки
+                    padding: dp(10)
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"center_x": 0.5}
+
+                    MDLabel:
+                        text: "Marrie qwe qw ewq ewq"
+                        font_name: "Clearsan"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(18)
+                        markup: True
+                        size_hint_y: None
+                        height: self.texture_size[1] # [color=ffffff]Подлежащее[/color]
+
+
+            # Button to navigate to questions
+            MDCard:
+                orientation: 'horizontal'
+                size_hint_x: 0.5
+                size_hint_y: None
+                elevation: 1
+                md_bg_color: 255/255, 225/255, 158/255, 1
+                height: self.minimum_height
+                pos_hint: {"center_x": 0.5, "y": 0.45}
+                padding: "8dp"
+                spacing: "8dp"
+                on_press: root.play_audio()
+
+                MDIcon:
+                    icon: 'play'
+
+                MDLabel:
+                    text: 'Прослухати'
+                    valign: 'middle'
+                    halign: "center"
+
+            MDCard:
+                orientation: 'horizontal'
+                size_hint_x: 0.5
+                size_hint_y: None
+                elevation: 1
+                md_bg_color: 255/255, 225/255, 158/255, 1
+                height: dp(30)
+                pos_hint: {"center_x": 0.5, "y": 0.25}
+                padding: "8dp"
+                spacing: "8dp"
+
+                MDLabel:
+                    text: 'Перейти до питань'
+                    valign: 'middle'
+                    halign: "center"
+
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+            size_hint: None, None
+            size: dp(56), dp(56)  # Размер кнопки возврата
+            on_release: app.root.current = 'choose_lvl_listen'

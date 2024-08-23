@@ -1,0 +1,177 @@
+<ChooseLvlListenScreen>:
+    name: 'choose_lvl_listen'
+
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
+                    pos_hint: {"top": 1}
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(90)
+                        md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        pos_hint: {"top": 0.95}
+
+                        MDLabel:
+                            text: "Виберіть рівень завдання для аудіювання"
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(24)
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(100)
+                        elevation: 2
+                        md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        padding: dp(10)
+                        on_release: root.set_level('A1')
+
+                        MDLabel:
+                            text: 'A1'
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(20)
+
+                        MDLabel:
+                            text: "Рівень для початківців. Розуміє прості фрази і може представити себе."
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(100)
+                        elevation: 2
+                        md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        padding: dp(10)
+                        on_release: root.set_level('A2')
+
+                        MDLabel:
+                            text: 'A2'
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(20)
+
+                        MDLabel:
+                            text: "Рівень для елементарного користувача. Може описувати повсякденні ситуації та обговорювати знайомі теми."
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(100)
+                        elevation: 2
+                        md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        padding: dp(10)
+                        on_release: root.set_level('B1')
+
+                        MDLabel:
+                            text: 'B1'
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(20)
+
+                        MDLabel:
+                            text: "Середній рівень. Може розуміти основні ідеї зрозумілих текстів і спілкуватися на знайомі теми."
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(100)
+                        elevation: 2
+                        md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        padding: dp(10)
+                        on_release: root.set_level('B2')
+
+                        MDLabel:
+                            text: 'B2'
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(20)
+
+                        MDLabel:
+                            text: "Вище середнього. Розуміє складні тексти і може висловлюватися чітко на широкий спектр тем."
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(100)
+                        elevation: 2
+                        md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                        radius: [15, 15, 15, 15]
+                        padding: dp(10)
+                        on_release: root.set_level('C1')
+
+                        MDLabel:
+                            text: 'C1'
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(20)
+
+                        MDLabel:
+                            text: "Просунутий рівень. Може розуміти широкий спектр складних текстів і висловлюватися спонтанно."
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+                size_hint: None, None
+                size: dp(56), dp(56)  # Размер кнопки возврата
+                on_release: app.change_screen_item('main')
