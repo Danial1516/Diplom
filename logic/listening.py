@@ -1,16 +1,13 @@
-import pygame
-from kivymd.uix.screen import MDScreen
-import os
 import random
-from kivy.properties import StringProperty
-
 import os
 import pygame
 from kivymd.uix.screen import MDScreen
 from kivy.properties import StringProperty
+# fix first press change button
 
 class ListenScreen(MDScreen):
     current_file_name = StringProperty('')
+    play_icon = StringProperty('play')
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -37,11 +34,13 @@ class ListenScreen(MDScreen):
                     # Пауза текущего воспроизведения и сохранение позиции
                     self.current_time = pygame.mixer.music.get_pos() / 1000
                     pygame.mixer.music.pause()
+                    self.play_icon = 'play'
                     self.is_playing = False
                 else:
                     # Возобновление воспроизведения с сохраненной позиции
                     pygame.mixer.music.unpause()
                     self.is_playing = True
+                    self.play_icon = 'pause'
             else:
                 # Если аудио не было загружено, загрузите и воспроизведите его
                 pygame.mixer.music.load(file_path)
@@ -55,6 +54,7 @@ class ListenScreen(MDScreen):
             pygame.mixer.music.stop()
             self.sound_file = None
             self.is_playing = False
+            self.play_icon = 'play'
             self.current_time = 0
 
         # Установите название текущего файла при входе на экран

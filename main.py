@@ -51,7 +51,7 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'future_perfect_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'gramm_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'expression_of_preferences.kv'))
-            Builder.load_file(os.path.join(kv_path, 'spec_phrases_words.kv '))
+            Builder.load_file(os.path.join(kv_path, 'spec_phrases_words.kv'))
             Builder.load_file(os.path.join(kv_path, 'listening.kv'))
             Builder.load_file(os.path.join(kv_path, 'chose_lvl_list.kv'))
 
