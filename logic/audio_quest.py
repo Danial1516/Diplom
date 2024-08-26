@@ -1,37 +1,34 @@
 from kivymd.uix.card import MDCard
 from kivymd.uix.screen import MDScreen
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, DictProperty
 
 class AudioQuestionsScreen(MDScreen):
-    selected_option = StringProperty('')  # Для хранения выбранного варианта
-    selected_fill_in_the_blanks_option = StringProperty('')  # Для хранения выбранного варианта заполнения пропусков
+    selected_option = StringProperty('')
 
     def select_option(self, option, question_id):
-        # Убираем подсветку со всех вариантов для данного вопроса
         self.ids[f'true_option_{question_id}'].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]
         self.ids[f'false_option_{question_id}'].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]
 
-        # Подсвечиваем выбранный вариант для текущего вопроса
         if option == 'true':
-            self.ids[f'true_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]  # Цвет для подсветки
+            self.ids[f'true_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
         elif option == 'false':
-            self.ids[f'false_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]  # Цвет для подсветки
+            self.ids[f'false_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
 
-        # Сохраняем выбранный вариант
         self.selected_option = option
 
+    selected_options = DictProperty({})  # Словарь для хранения выбранных вариантов для каждого вопроса
 
     def select_fill_in_the_blanks_option(self, option_id):
-        # Убираем подсветку со всех вариантов заполнения пропусков
-        for key, option in self.ids.items():
-            if isinstance(option, MDCard) and key.startswith('option_'):
-                option.md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]  # Цвет для сброса подсветки
+        # Определяем вопрос по option_id
+        question_id = option_id.split('_')[2]  # Например, если option_id = 'option_1_q1', question_id = 'q1'
 
-        # Подсвечиваем выбранный вариант
-        if option_id in self.ids:
-            self.ids[option_id].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]  # Цвет для подсветки
+        # Проверяем, был ли уже выбран вариант для этого вопроса, если да, сбрасываем его подсветку
+        previous_selected_option = self.selected_options.get(question_id)
+        if previous_selected_option:
+            self.ids[previous_selected_option].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]  # Сброс подсветки
 
-        # Сохраняем выбранный вариант
-        self.selected_fill_in_the_blanks_option = option_id
+        # Подсвечиваем новый выбранный вариант
+        self.ids[option_id].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
 
-
+        # Обновляем словарь с выбранным вариантом для этого вопроса
+        self.selected_options[question_id] = option_id
