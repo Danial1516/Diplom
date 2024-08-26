@@ -9,6 +9,7 @@ from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
 from logic.task import SpecCard
+from logic.audio_quest import AudioQuestionsScreen
 from logic.listening import ListenScreen
 from logic.сhoose_lvl_listen import ChooseLvlListenScreen
 import logging
@@ -54,6 +55,7 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'spec_phrases_words.kv'))
             Builder.load_file(os.path.join(kv_path, 'listening.kv'))
             Builder.load_file(os.path.join(kv_path, 'chose_lvl_list.kv'))
+            Builder.load_file(os.path.join(kv_path, 'audio_questions.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -82,6 +84,7 @@ class LangVoyageApp(MDApp):
             sm.add_widget((SpecialPhrasesWordsScreen(name="spec_phrases_words")))
             sm.add_widget((ListenScreen(name="listen_screen")))
             sm.add_widget((ChooseLvlListenScreen(name="choose_lvl_listen")))
+            sm.add_widget((AudioQuestionsScreen(name="audio_question")))
 
 
             logging.info("Все экраны загружены успешно.")

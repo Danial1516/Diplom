@@ -1,0 +1,94 @@
+<AudioQuestionsScreen>:
+    name: 'audio_question'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
+
+                    # Пример вопроса True/False
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: dp(80)
+                        md_bg_color: 173/255, 216/255, 230/255, 1
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Виберіть True/False для наступних питань"
+                            font_name: "juneg"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(24)
+
+                    # Вопрос 1
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: 245/255, 245/255, 220/255, 1
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Вопрос 1 йцуцйу йц уй ц йцуйцуцйууц й цйцй у цуй"
+                            font_name: "juneg"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: [0, 0, 0, dp(20)]  # Отступ снизу
+
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(40)
+
+                            MDCard:
+                                size_hint_x: 0.5
+                                md_bg_color: 255/255, 255/255, 255/255, 1
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: app.set_answer('True')
+
+                                MDLabel:
+                                    text: "True"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                            MDCard:
+                                size_hint_x: 0.5
+                                md_bg_color: 255/255, 255/255, 255/255, 1
+                                elevation: 1
+                                radius: [15, 15, 15, 15]
+                                on_release: app.set_answer('False')
+
+                                MDLabel:
+                                    text: "False"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"x": 0, "top": 1}
+            size_hint: None, None
+            size: dp(56), dp(56)
+            on_release: app.root.current = 'listen_screen'
