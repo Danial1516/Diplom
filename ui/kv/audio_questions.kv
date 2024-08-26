@@ -35,6 +35,7 @@
 
                     # Вопрос 1
                     MDCard:
+                        id: question_card_1
                         orientation: 'vertical'
                         size_hint_y: None
                         height: self.minimum_height
@@ -59,11 +60,12 @@
                             height: dp(40)
 
                             MDCard:
+                                id: true_option_1
                                 size_hint_x: 0.5
-                                md_bg_color: 255/255, 255/255, 255/255, 1
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
                                 radius: [15, 15, 15, 15]
                                 elevation: 1
-                                on_release: app.set_answer('True')
+                                on_release: root.select_option('true', '1')
 
                                 MDLabel:
                                     text: "True"
@@ -73,11 +75,12 @@
                                     theme_text_color: "Primary"
 
                             MDCard:
+                                id: false_option_1
                                 size_hint_x: 0.5
-                                md_bg_color: 255/255, 255/255, 255/255, 1
-                                elevation: 1
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
                                 radius: [15, 15, 15, 15]
-                                on_release: app.set_answer('False')
+                                elevation: 1
+                                on_release: root.select_option('false', '1')
 
                                 MDLabel:
                                     text: "False"
@@ -85,6 +88,230 @@
                                     halign: "center"
                                     valign: "center"
                                     theme_text_color: "Primary"
+
+
+                    MDCard:
+                        id: question_card_2
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: 245/255, 245/255, 220/255, 1
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Вопрос 2 йцуцйу йц уй ц йцуйцуцйууц й цйцй у цуй"
+                            font_name: "juneg"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: [0, 0, 0, dp(20)]  # Отступ снизу
+
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(40)
+
+                            MDCard:
+                                id: true_option_2
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('true', '2')
+
+                                MDLabel:
+                                    text: "True"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                            MDCard:
+                                id: false_option_2
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('false', '2')
+
+                                MDLabel:
+                                    text: "False"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                    MDCard:
+                        id: question_card_3
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: 245/255, 245/255, 220/255, 1
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Вопрос 3 йцуцйу йц уй ц йцуйцуцйууц й цйцй у цуй"
+                            font_name: "juneg"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: [0, 0, 0, dp(20)]  # Отступ снизу
+
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(40)
+
+                            MDCard:
+                                id: true_option_3
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('true', '3')
+
+                                MDLabel:
+                                    text: "True"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                            MDCard:
+                                id: false_option_3
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('false', '3')
+
+                                MDLabel:
+                                    text: "False"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                    MDCard:
+                        id: question_card_4
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: 245/255, 245/255, 220/255, 1
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Вопрос 4 йцуцйу йц уй ц йцуйцуцйууц й цйцй у цуй"
+                            font_name: "juneg"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: [0, 0, 0, dp(20)]  # Отступ снизу
+
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(40)
+
+                            MDCard:
+                                id: true_option_4
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('true', '4')
+
+                                MDLabel:
+                                    text: "True"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                            MDCard:
+                                id: false_option_4
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('false', '4')
+
+                                MDLabel:
+                                    text: "False"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+
+                    MDCard:
+                        id: question_card_5
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        md_bg_color: 245/255, 245/255, 220/255, 1
+                        padding: dp(10)
+                        radius: [15, 15, 15, 15]
+
+                        MDLabel:
+                            text: "Вопрос 5 йцуцйу йц уй ц йцуйцуцйууц й цйцй у цуй"
+                            font_name: "juneg"
+                            halign: "justify"
+                            theme_text_color: "Primary"
+                            font_size: sp(14)
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            padding: [0, 0, 0, dp(20)]  # Отступ снизу
+
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(10)
+                            size_hint_y: None
+                            height: dp(40)
+
+                            MDCard:
+                                id: true_option_5
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('true', '5')
+
+                                MDLabel:
+                                    text: "True"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+                            MDCard:
+                                id: false_option_5
+                                size_hint_x: 0.5
+                                md_bg_color: [255/255, 255/255, 255/255, 1]
+                                radius: [15, 15, 15, 15]
+                                elevation: 1
+                                on_release: root.select_option('false', '5')
+
+                                MDLabel:
+                                    text: "False"
+                                    font_name: "juneg"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "Primary"
+
+
 
         MDIconButton:
             icon: 'arrow-left'
