@@ -676,6 +676,45 @@
                                     theme_text_color: "Primary"
 
 
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        spacing: dp(10)  # Расстояние между карточками
+
+                        MDCard:
+                            orientation: 'vertical'
+                            size_hint_x: 0.5
+                            size_hint_y: None
+                            height: self.minimum_height
+                            elevation: 1
+                            md_bg_color: 255/255, 127/255, 80/255, 1
+                            padding: [20,30,20,30]
+                            radius: [15, 15, 15, 15]
+                            on_press: app.root.current = 'choose_lvl_listen'
+
+                            MDLabel:
+                                text: 'Повернутись до вибору рівня'
+                                valign: 'middle'
+                                halign: "center"
+
+                        MDCard:
+                            orientation: 'vertical'
+                            size_hint_x: 0.5
+                            size_hint_y: None
+                            height: self.minimum_height
+                            elevation: 1
+                            md_bg_color: 255/255, 127/255, 80/255, 1
+                            padding: [20,30,20,30]
+                            radius: [15, 15, 15, 15]
+                            on_release: root.check_answers()
+
+                            MDLabel:
+                                text: 'Перевірити відповіді'
+                                valign: 'middle'
+                                halign: "center"
+
+
+
 
 
 
