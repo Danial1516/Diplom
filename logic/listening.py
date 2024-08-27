@@ -3,7 +3,6 @@ import os
 import pygame
 from kivymd.uix.screen import MDScreen
 from kivy.properties import StringProperty
-# fix first press change button
 
 class ListenScreen(MDScreen):
     current_file_name = StringProperty('')
@@ -48,6 +47,10 @@ class ListenScreen(MDScreen):
                 self.is_playing = True
                 self.sound_file = file_path
 
+    def get_text_file_path(self):
+        """Получить путь к текстовому файлу, соответствующему текущему аудиофайлу."""
+        return os.path.join('assets/audio/questions', self.current_file_name + '.txt')
+
     def on_pre_enter(self, *args):
         """Сброс состояния при входе на экран."""
         if self.sound_file:
@@ -64,6 +67,10 @@ class ListenScreen(MDScreen):
             file_name = random.choice(mp3_files)
             # Удалите расширение .mp3 из имени файла
             self.current_file_name, _ = os.path.splitext(file_name)
+
+            # Обновите экран с вопросами
+            audio_screen = self.manager.get_screen('audio_question')
+            audio_screen.update_screen_with_audio(self.current_file_name)
 
     def on_leave(self, *args):
         """Сброс состояния при выходе с экрана."""

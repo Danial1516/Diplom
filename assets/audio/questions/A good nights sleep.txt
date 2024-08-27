@@ -1,0 +1,48 @@
+Audio: "A good night's sleep"
+
+True/False Questions:
+t_f_q1: "Drinking a warm glass of milk before bed can help you fall asleep."
+t_f_ans_q1: "True"
+
+t_f_q2: "Exercising right before bed is recommended for better sleep."
+t_f_ans_q2: "False"
+
+t_f_q3: "Keeping a regular sleep schedule helps improve sleep quality."
+t_f_ans_q3: "True"
+
+t_f_q4: "Using electronic devices before bed can disrupt your sleep."
+t_f_ans_q4: "True"
+
+t_f_q5: "It's good to eat a heavy meal just before going to bed."
+t_f_ans_q5: "False"
+
+Fill in the Blanks Questions:
+q1: "A good night's sleep is important for maintaining a healthy _______."
+q1_op1: "diet"
+q1_op2: "lifestyle"
+q1_op3: "immune system"
+cor_ans_q1: "lifestyle"
+
+q2: "To avoid sleep problems, it's advised to reduce your exposure to _______ light before bedtime."
+q2_op1: "blue"
+q2_op2: "yellow"
+q2_op3: "red"
+cor_ans_q2: "blue"
+
+q3: "The body's internal clock, known as the _______ rhythm, helps regulate sleep patterns."
+q3_op1: "cardiac"
+q3_op2: "circadian"
+q3_op3: "circular"
+cor_ans_q3: "circadian"
+
+q4: "Keeping your bedroom cool, dark, and _______ can improve sleep quality."
+q4_op1: "quiet"
+q4_op2: "noisy"
+q4_op3: "bright"
+cor_ans_q4: "quiet"
+
+q5: "To get a better night's sleep, avoid consuming _______ late in the day."
+q5_op1: "caffeine"
+q5_op2: "water"
+q5_op3: "sugar"
+cor_ans_q5: "caffeine"

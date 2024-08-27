@@ -1,0 +1,48 @@
+Audio: "Ordering food"
+
+True/False Questions:
+t_f_q1: "The customer asks for a vegetarian option."
+t_f_ans_q1: "True"
+
+t_f_q2: "The waiter offers a discount on the meal."
+t_f_ans_q2: "False"
+
+t_f_q3: "The customer orders dessert at the beginning of the meal."
+t_f_ans_q3: "False"
+
+t_f_q4: "The customer is allergic to peanuts and asks about them in the dish."
+t_f_ans_q4: "True"
+
+t_f_q5: "The waiter suggests trying the house special."
+t_f_ans_q5: "True"
+
+Fill in the Blanks Questions:
+q1: "The customer starts by asking to see the _______."
+q1_op1: "dessert menu"
+q1_op2: "drink menu"
+q1_op3: "main menu"
+cor_ans_q1: "main menu"
+
+q2: "The waiter recommends the _______ as a popular dish among customers."
+q2_op1: "steak"
+q2_op2: "pasta"
+q2_op3: "salad"
+cor_ans_q2: "pasta"
+
+q3: "The customer asks if the dish contains _______ due to an allergy."
+q3_op1: "dairy"
+q3_op2: "peanuts"
+q3_op3: "gluten"
+cor_ans_q3: "peanuts"
+
+q4: "The customer orders a _______ to drink with their meal."
+q4_op1: "soda"
+q4_op2: "glass of wine"
+q4_op3: "water"
+cor_ans_q4: "glass of wine"
+
+q5: "At the end of the meal, the customer asks for the _______."
+q5_op1: "bill"
+q5_op2: "dessert menu"
+q5_op3: "manager"
+cor_ans_q5: "bill"
