@@ -2,10 +2,12 @@ import os
 
 from kivymd.uix.card import MDCard
 from kivymd.uix.screen import MDScreen
-from kivy.properties import StringProperty, DictProperty
+from kivy.properties import StringProperty, DictProperty, BooleanProperty
 
 class AudioQuestionsScreen(MDScreen):
     selected_option = StringProperty('')
+    selected_options = DictProperty({})
+    is_checked = BooleanProperty(False)
 
     # Свойства для хранения данных из словаря
     t_f_q1 = StringProperty('')
@@ -47,6 +49,32 @@ class AudioQuestionsScreen(MDScreen):
     t_f_cor_ans_q3 = StringProperty('')
     t_f_cor_ans_q4 = StringProperty('')
     t_f_cor_ans_q5 = StringProperty('')
+
+    def on_pre_enter(self, *args):
+        """Сбросить экран при каждом входе на него."""
+        self.reset_screen()
+        self.is_checked = False
+
+    def reset_screen(self):
+        """Сбросить все ответы и цвета к исходному состоянию."""
+        self.selected_option = ''
+        self.selected_options.clear()
+
+        # Сбросить цвет всех кнопок True/False
+        for i in range(1, 6):
+            true_option_id = f'true_option_{i}'
+            false_option_id = f'false_option_{i}'
+            if true_option_id in self.ids:
+                self.ids[true_option_id].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]  # Белый цвет
+            if false_option_id in self.ids:
+                self.ids[false_option_id].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]  # Белый цвет
+
+        # Сбросить цвет всех кнопок Fill in the Blanks
+        for i in range(1, 6):
+            for j in range(1, 4):
+                option_id = f'option_{j}_q{i}'
+                if option_id in self.ids:
+                    self.ids[option_id].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]  # Белый цвет
 
     def load_data(self, file_path):
         """Загрузить данные из текстового файла в свойства класса."""
@@ -101,19 +129,27 @@ class AudioQuestionsScreen(MDScreen):
         self.load_data(text_file_path)
 
     def select_option(self, option, question_id):
+        if self.is_checked:
+            return
+
+        # Сбрасываем цвета обеих кнопок к исходному белому
         self.ids[f'true_option_{question_id}'].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]
         self.ids[f'false_option_{question_id}'].md_bg_color = [255 / 255, 255 / 255, 255 / 255, 1]
 
-        if option == 'true':
-            self.ids[f'true_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
-        elif option == 'false':
-            self.ids[f'false_option_{question_id}'].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
+        # Подсвечиваем выбранный пользователем вариант
+        selected_id = f'{option}_option_{question_id}'
+        self.ids[selected_id].md_bg_color = [173 / 255, 216 / 255, 230 / 255, 1]
 
+        # Сохраняем выбранный вариант в словарь selected_options
+        self.selected_options[f't_f_q{question_id}'] = selected_id
+
+        # Сохраняем выбранный вариант для дальнейшей проверки
         self.selected_option = option
 
-    selected_options = DictProperty({})  # Словарь для хранения выбранных вариантов для каждого вопроса
-
     def select_fill_in_the_blanks_option(self, option_id):
+        if self.is_checked:
+            return
+
         # Определяем вопрос по option_id
         question_id = option_id.split('_')[2]  # Например, если option_id = 'option_1_q1', question_id = 'q1'
 
@@ -129,23 +165,36 @@ class AudioQuestionsScreen(MDScreen):
         self.selected_options[question_id] = option_id
 
     def check_answers(self):
+        self.is_checked = True
         # Проверка True/False вопросов
         for i in range(1, 6):
-            user_answer = self.selected_options.get(f't_f_q{i}', '')
-            correct_answer = getattr(self, f't_f_cor_ans_q{i}').replace('"', '')  # Убираем кавычки
+            # Получаем выбранный пользователем ответ (ID кнопки)
+            user_answer_id = self.selected_options.get(f't_f_q{i}', '')
+            # Получаем правильный ответ из атрибута (например, 'True' или 'False')
+            correct_answer = getattr(self, f't_f_ans_q{i}').replace('"', '')  # Убираем кавычки
 
-            print(f"Checking True/False Question {i}: user_answer={user_answer}, correct_answer={correct_answer}")
+            # Определяем ID для вариантов ответа
+            true_option_id = f'true_option_{i}'
+            false_option_id = f'false_option_{i}'
 
-            if user_answer:
-                true_option_id = f'true_option_{i}'
-                false_option_id = f'false_option_{i}'
+            # Определяем ID правильного ответа в зависимости от значения correct_answer
+            correct_option_id = true_option_id if correct_answer.lower() == 'true' else false_option_id
 
-                if user_answer == correct_answer.lower():
-                    self.ids[f'{user_answer}_option_{i}'].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]
+            # Проверяем, выбрал ли пользователь какой-либо вариант ответа
+            if user_answer_id:
+                # Если выбран правильный вариант
+                if user_answer_id == correct_option_id:
+                    # Красим правильный вариант в зелёный
+                    self.ids[user_answer_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]
                 else:
-                    correct_option_id = true_option_id if correct_answer.lower() == 'true' else false_option_id
-                    self.ids[f'{user_answer}_option_{i}'].md_bg_color = [255 / 255, 0 / 255, 0 / 255, 1]
-                    self.ids[correct_option_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]
+                    # Если выбран неправильный вариант
+                    self.ids[user_answer_id].md_bg_color = [255 / 255, 0 / 255, 0 / 255,
+                                                            1]  # Красим неверный ответ в красный
+                    self.ids[correct_option_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255,
+                                                               1]  # Красим правильный ответ в зелёный
+            else:
+                # Если вариант не выбран пользователем, подсвечиваем правильный ответ зеленым
+                self.ids[correct_option_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]  # Зеленый цвет
 
         # Проверка Fill in the Blanks вопросов
         for i in range(1, 6):
@@ -165,3 +214,9 @@ class AudioQuestionsScreen(MDScreen):
                         if self.ids[option_id].children[0].text == correct_answer:
                             self.ids[option_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]  # Зеленый цвет
                             break
+            else:
+                # Если вариант не выбран пользователем, подсвечиваем правильный ответ зеленым
+                for option_id in [f'option_1_q{i}', f'option_2_q{i}', f'option_3_q{i}']:
+                    if self.ids[option_id].children[0].text == correct_answer:
+                        self.ids[option_id].md_bg_color = [0 / 255, 128 / 255, 0 / 255, 1]  # Зеленый цвет
+                        break
