@@ -1,5 +1,5 @@
 # main.py
-
+from database.db import create_tables
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
@@ -26,7 +26,6 @@ Window.size = (360, 640)  # Устанавливаем размеры окна �
 class LangVoyageApp(MDApp):
     current_user = None
     translator = Translator()
-
     def build(self):
         try:
             kv_path = os.path.join(os.path.dirname(__file__), 'ui', 'kv')
@@ -138,4 +137,5 @@ if __name__ == '__main__':
     LabelBase.register(name="Foglih", fn_regular="assets/fonts/FoglihtenNo06_076.otf")
     LabelBase.register(name="Intro", fn_regular="assets/fonts/Intro.otf")
     LabelBase.register(name="juneg", fn_regular="assets/fonts/junegull rg.otf")  # заголовки
+    create_tables()
     LangVoyageApp().run()

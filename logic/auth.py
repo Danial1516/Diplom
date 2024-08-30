@@ -1,9 +1,11 @@
-# logic/auth.py
-
-from database.db import db
+from database.db import Database  # Импорт класса Database
 import logging
-import datetime
+from datetime import datetime
+
 logging.basicConfig(level=logging.DEBUG)
+
+# Создание экземпляра класса Database
+db = Database()
 
 def login_user(email, password):
     user = db.login_user(email, password)
@@ -17,13 +19,14 @@ def register_user(name, email, password):
         logging.error(f"Failed to register user {email}. User might already exist.")
     return result
 
-def user_login(self, email, password):
-    user = self.login_user(email, password)
+def user_login(email, password):
+    user = db.login_user(email, password)
     if user:
-        user_id = user[0]
+        user_id = user.id  # Изменение на user.id для SQLAlchemy
         login_date = datetime.now().date()
-        self.record_login(user_id, login_date)
-        streak = self.get_login_streak(user_id)
-        logging.debug(f"User {email} has a login streak of {streak} days")
-        return True
+        result = db.record_login(user_id, login_date)
+        if result:
+            streak = db.get_login_streak(user_id)
+            logging.debug(f"User {email} has a login streak of {streak} days")
+            return True
     return False
