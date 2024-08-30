@@ -59,12 +59,22 @@ class Question(Base):
     audio_id = Column(Integer, ForeignKey('audio.id'))
     audio = relationship('Audio')
 
-
-class Answer(Base):
-    __tablename__ = 'answer'
+class TrueFalseQuestion(Base):
+    __tablename__ = 'true_false_answer'
     id = Column(Integer, primary_key=True, index=True)
-    text = Column(Text, nullable=False)
-    is_correct = Column(Boolean, nullable=False)
+    correct_answer = Column(Boolean, nullable=False)
+    question_id = Column(Integer, ForeignKey('question.id'))
+    question = relationship('Question')
+
+
+class FillInQuestion(Base):
+    __tablename__ = 'fill_in_answer'
+    id = Column(Integer, primary_key=True, index=True)
+    correct_answer = Column(String(255), nullable=False)
+    first_choice = Column(Text, nullable=False)
+    second_choice = Column(Text, nullable=False)
+    third_choice = Column(Text, nullable=False)
+    correct_answer = Column(String(255), nullable=False)
     question_id = Column(Integer, ForeignKey('question.id'))
     question = relationship('Question')
 
@@ -76,6 +86,77 @@ def create_tables():
     seed_levels()
     seed_audio()
     seed_questions()
+    seed_fill_in_questions()
+    seed_true_false_questions()
+
+
+def seed_true_false_questions():
+    true_false_questions = [
+        (1, True, 1),
+        (2, False, 2),
+        (3, True, 3),
+        (4, True, 4),
+        (5, False, 5),
+        (6, True, 11),
+        (7, False, 12),
+        (8, False, 13),
+        (9, True, 14),
+        (10, True, 15)
+
+    ]
+
+    session = SessionLocal()
+
+    for id, correct_answer, question_id in true_false_questions:
+        try:
+            true_false_question = TrueFalseQuestion(
+                id=id,
+                correct_answer=correct_answer,
+                question_id=question_id
+            )
+            session.merge(true_false_question)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            print(f"Failed to insert or update TrueFalseQuestion {id}: {e}")
+
+    session.close()
+
+
+
+def seed_fill_in_questions():
+    fill_in_questions = [
+        (1, "lifestyle", "diet", "lifestyle", "immune system", 6),
+        (2, "blue", "blue", "yellow", "red", 7),
+        (3, "circadian", "cardiac", "circadian", "circular", 8),
+        (4, "quiet", "quiet", "noisy", "bright", 9),
+        (5, "caffeine", "caffeine", "water", "sugar", 10),
+        (6, "main menu", "dessert menu", "drink menu", "main menu", 16),
+        (7, "pasta", "steak", "pasta", "salad", 17),
+        (8, "peanuts", "dairy", "peanuts", "gluten", 18),
+        (9, "glass of wine", "soda", "glass of wine", "water", 19),
+        (10, "bill", "bill", "dessert menu", "manager", 20)
+    ]
+
+    session = SessionLocal()
+
+    for id, correct_answer, first_choice, second_choice, third_choice, question_id in fill_in_questions:
+        try:
+            fill_in_question = FillInQuestion(
+                id=id,
+                correct_answer=correct_answer,
+                first_choice=first_choice,
+                second_choice=second_choice,
+                third_choice=third_choice,
+                question_id=question_id
+            )
+            session.merge(fill_in_question)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            print(f"Failed to insert or update FillInQuestion {id}: {e}")
+
+    session.close()
 
 
 
