@@ -3,35 +3,101 @@
     MDScreen:
         md_bg_color: 28/255, 140/255, 140/255, 1
         FloatLayout:
-            MDBoxLayout:
-                orientation: 'vertical'
-                size_hint_y: None
-                height: self.minimum_height
-                padding: [dp(20), dp(40), dp(20), dp(30)]
-                spacing: dp(50)
-                pos_hint: {"top": 1}
+            # Скролл с карточками
+            MDScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-                MDCard:
+                MDBoxLayout:
+                    id: card_container
                     orientation: 'vertical'
                     size_hint_y: None
-                    height: dp(90)
-                    md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки
-                    radius: [15, 15, 15, 15]
-                    pos_hint: {"top": 0.95}
-
-                    MDLabel:
-                        text: "Тестування"
-                        font_name: "juneg"
-                        halign: "center"
-                        theme_text_color: "Primary"
-                        font_size: sp(24)
+                    height: self.minimum_height
+                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                    spacing: dp(20)
 
 
+        MDLabel:
+            id: timer_label
+            text: "00:00"
+            font_style: "H6"
+            halign: "right"
+            pos_hint: {"right": 0.95, "top": 1}
+            size_hint: None, None
+            size: dp(56), dp(56)
 
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+            size_hint: None, None
+            size: dp(56), dp(56)  # Размер кнопки возврата
+            on_release: app.root.current = 'testing'
 
-            MDIconButton:
-                icon: 'arrow-left'
-                pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
-                size_hint: None, None
-                size: dp(56), dp(56)  # Размер кнопки возврата
-                on_release: app.root.current = 'testing'
+<CustomMDCard>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    md_bg_color: 245/255, 245/255, 220/255, 1
+    padding: dp(10)
+    radius: [15, 15, 15, 15]
+
+    MDLabel:
+        id: question_label
+        text: root.question_label
+        font_name: "juneg"
+        halign: "justify"
+        theme_text_color: "Primary"
+        font_size: sp(14)
+        size_hint_y: None
+        height: self.texture_size[1]
+        padding: [dp(3), dp(3), dp(3), dp(20)]  # Отступ снизу
+
+    MDBoxLayout:
+        orientation: 'horizontal'
+        spacing: dp(10)
+        size_hint_y: None
+        height: dp(40)
+
+        MDCard:
+            id: option_1
+            size_hint_x: 0.5
+            md_bg_color: [255/255, 255/255, 255/255, 1]
+            radius: [15, 15, 15, 15]
+            elevation: 1
+
+            MDLabel:
+                text: root.option_1
+                font_name: "juneg"
+                halign: "center"
+                valign: "center"
+                theme_text_color: "Primary"
+
+        MDCard:
+            id: option_2
+            size_hint_x: 0.5
+            md_bg_color: [255/255, 255/255, 255/255, 1]
+            radius: [15, 15, 15, 15]
+            elevation: 1
+
+            MDLabel:
+                text: root.option_2
+                font_name: "juneg"
+                halign: "center"
+                valign: "center"
+                theme_text_color: "Primary"
+
+        MDCard:
+            id: option_3
+            size_hint_x: 0.5
+            md_bg_color: [255/255, 255/255, 255/255, 1]
+            radius: [15, 15, 15, 15]
+            elevation: 1
+
+            MDLabel:
+                text: root.option_3
+                font_name: "juneg"
+                halign: "center"
+                valign: "center"
+                theme_text_color: "Primary"
