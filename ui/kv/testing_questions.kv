@@ -19,14 +19,35 @@
                     spacing: dp(20)
 
 
-        MDLabel:
-            id: timer_label
-            text: "00:00"
-            font_style: "H6"
-            halign: "right"
+        MDCard:
+            orientation: 'horizontal'
+            size_hint_y: None
+            size_hint_x: None
+            width: self.minimum_width
+            height: dp(46)
+            padding: dp(8)
+            md_bg_color: 200/255, 200/255, 200/255, 1
+            radius: [15, 15, 15, 15]
             pos_hint: {"right": 0.95, "top": 1}
-            size_hint: None, None
-            size: dp(56), dp(56)
+            spacing: dp(10)
+
+            MDLabel:
+                text: "Закінчити спробу"
+                font_name: "juneg"
+                halign: "left"
+                valign: "center"
+                theme_text_color: "Primary"
+                size_hint_x: None
+                width: dp(150)
+
+            MDLabel:
+                id: timer_label
+                text: "00:00"
+                font_style: "H6"
+                halign: "right"
+                size_hint_x: None
+                width: dp(56)
+                font_size: sp(16)
 
         MDIconButton:
             icon: 'arrow-left'
