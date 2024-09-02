@@ -59,6 +59,24 @@ class Question(Base):
     audio_id = Column(Integer, ForeignKey('audio.id'))
     audio = relationship('Audio')
 
+class TestQuestion(Base):
+    __tablename__ = 'test_questions'
+    id = Column(Integer, primary_key=True, index=True)
+    text = Column(Text, nullable=False)
+    level_id = Column(Integer, ForeignKey('level.id'))  # Связь с уровнем сложности
+    level = relationship('Level')  # Связь с таблицей уровней
+
+class TestAnswer(Base):
+    __tablename__ = 'test_answers'
+    id = Column(Integer, primary_key=True, index=True)
+    first_option = Column(Text, nullable=False)
+    second_option = Column(Text, nullable=False)
+    third_option = Column(Text, nullable=False)
+    is_correct = Column(Text, nullable=False)  # Признак правильного ответа
+    question_id = Column(Integer, ForeignKey('test_questions.id'))  # Связь с вопросом
+    question = relationship('TestQuestion')  # Обратная связь с вопросом
+
+
 class TrueFalseQuestion(Base):
     __tablename__ = 'true_false_answer'
     id = Column(Integer, primary_key=True, index=True)
@@ -86,11 +104,13 @@ def create_tables():
     seed_levels()
     seed_audio()
     seed_questions()
-    seed_fill_in_questions()
-    seed_true_false_questions()
+    seed_fill_in_answers()
+    seed_true_false_answers()
+    seed_test_questions()
+    seed_test_answers()
 
 
-def seed_true_false_questions():
+def seed_true_false_answers():
     true_false_questions = [
         (1, True, 1),
         (2, False, 2),
@@ -124,7 +144,7 @@ def seed_true_false_questions():
 
 
 
-def seed_fill_in_questions():
+def seed_fill_in_answers():
     fill_in_questions = [
         (1, "lifestyle", "diet", "lifestyle", "immune system", 6),
         (2, "blue", "blue", "yellow", "red", 7),
@@ -158,7 +178,126 @@ def seed_fill_in_questions():
 
     session.close()
 
+def seed_test_questions():
+    questions = [
+        # A1-A2 Level Questions
+        (1, "She ___ to school every day.", 2),
+        (2, "She is ___ the bus.", 2),
+        (3, "They ___ happy today.", 2),
+        (4, "I ___ reading a book right now.", 2),
+        (5, "He ___ a car.", 2),
+        (6, "We ___ to visit grandma tomorrow.", 2),
+        (7, "He was born ___ 1995.", 2),
+        (8, "They ___ football on weekends.", 2),
+        (9, "She ___ like pizza.", 2),
+        (10, "The cat is ___ the table.", 2),
+        (11, "He always ___ TV in the evening.", 2),
+        (12, "We will meet ___ Monday.", 2),
 
+        # B2+ Level Questions
+        (13, "She ___ to Paris three times.", 4),
+        (14, "I ___ to play football when I was a child.", 4),
+        (15, "You ___ finish your homework before going out.", 4),
+        (16, "The party is ___ the weekend.", 4),
+        (17, "She ___ start a new job next week.", 4),
+        (18, "They ___ watching TV when I called.", 4),
+        (19, "When I was young, I ___ play outside all day.", 4),
+        (20, "She is interested ___ learning new languages.", 4),
+        (21, "He ___ studying for three hours.", 4),
+        (22, "The book is ___ the shelf.", 4),
+        (23, "We ___ go to the beach every summer.", 4),
+        (24, "She ___ to work late last night.", 4),
+        (25, "They ___ to move next month.", 4),
+        (26, "I ___ to have long hair.", 4),
+
+        # C1+ Level Questions
+        (27, "By the time we arrived, they ___", 5),
+        (28, "He ___ always bring flowers on Sundays.", 5),
+        (29, "You ___ wear a helmet when riding a bike.", 5),
+        (30, "I knew they ___ be late.", 5),
+        (31, "She lives ___ the outskirts of town.", 5),
+        (32, "By next year, I ___ completed the course.", 5),
+        (33, "We ___ eat dinner at 6 PM every day.", 5),
+        (34, "Had I known the truth, I ___ you.", 5),
+        (35, "The report is due ___ the end of the week.", 5),
+    ]
+
+    session = SessionLocal()
+
+    for id, text, level_id in questions:
+        try:
+            question = TestQuestion(id=id, text=text, level_id=level_id)
+            session.merge(question)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            print(f"Failed to insert or update question {id}: {e}")
+
+    session.close()
+
+
+def seed_test_answers():
+    answers = [
+        # A1-A2 Level Answers
+        (1, "go", "goes", "going", "goes", 1),
+        (2, "at", "in", "on", "on", 2),
+        (3, "is", "are", "am", "are", 3),
+        (4, "is", "are", "am", "am", 4),
+        (5, "has", "have", "having", "has", 5),
+        (6, "going", "goes", "are going", "are going", 6),
+        (7, "in", "at", "on", "in", 7),
+        (8, "play", "plays", "playing", "play", 8),
+        (9, "don’t", "doesn’t", "didn’t", "doesn’t", 9),
+        (10, "under", "on", "above", "under", 10),
+        (11, "watch", "watches", "watching", "watches", 11),
+        (12, "in", "on", "at", "on", 12),
+
+        # B2+ Level Answers
+        (13, "has been", "was", "have been", "has been", 13),
+        (14, "used", "use", "uses", "used", 14),
+        (15, "has to", "have to", "had to", "have to", 15),
+        (16, "at", "in", "on", "on", 16),
+        (17, "will", "would", "is going to", "is going to", 17),
+        (18, "was", "were", "are", "were", 18),
+        (19, "would", "used", "will", "would", 19),
+        (20, "at", "in", "on", "in", 20),
+        (21, "has been", "is", "was", "has been", 21),
+        (22, "in", "on", "at", "on", 22),
+        (23, "would", "use to", "will", "used to", 23),
+        (24, "had", "have", "has", "had", 24),
+        (25, "are", "will", "going", "are going", 25),
+        (26, "used", "was used", "use", "used", 26),
+
+        # C1+ Level Answers
+        (27, "had left", "left", "was leaving", "had left", 27),
+        (28, "would", "used", "was", "would", 28),
+        (29, "must", "have to", "should", "must", 29),
+        (30, "would", "will", "are going to", "would", 30),
+        (31, "on", "in", "at", "on", 31),
+        (32, "will have", "would have", "have", "will have", 32),
+        (33, "used to", "would", "will", "would", 33),
+        (34, "would have told", "tell", "will tell", "would have told", 34),
+        (35, "by", "at", "in", "by", 35)
+    ]
+    session = SessionLocal()
+
+    for id, first_option, second_option, third_option, is_correct, question_id in answers:
+        try:
+            fill_in_question = TestAnswer(
+                id=id,
+                first_option=first_option,
+                second_option=second_option,
+                third_option=third_option,
+                is_correct=is_correct,
+                question_id=question_id
+            )
+            session.merge(fill_in_question)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            print(f"Failed to insert or update FillInQuestion {id}: {e}")
+
+    session.close()
 
 def seed_questions():
     questions = [
