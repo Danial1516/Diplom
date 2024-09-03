@@ -30,6 +30,7 @@
             radius: [15, 15, 15, 15]
             pos_hint: {"right": 0.95, "top": 1}
             spacing: dp(10)
+            on_release: root.show_results_dialog()
 
             MDLabel:
                 text: "Закінчити спробу"
@@ -42,7 +43,7 @@
 
             MDLabel:
                 id: timer_label
-                text: "00:00"
+                text: "20:00"
                 font_style: "H6"
                 halign: "right"
                 size_hint_x: None
@@ -122,3 +123,23 @@
                 halign: "center"
                 valign: "center"
                 theme_text_color: "Primary"
+
+
+
+<CustomDialogContent>:
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDLabel:
+        id: level_label
+        text: ""
+        theme_text_color: "Secondary"
+        halign: "center"
+
+    MDLabel:
+        id: score_label
+        text: ""
+        theme_text_color: "Secondary"
+        halign: "center"

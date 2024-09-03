@@ -207,7 +207,7 @@ def seed_test_questions():
         (22, "The book is ___ the shelf.", 4),
         (23, "We ___ go to the beach every summer.", 4),
         (24, "She ___ to work late last night.", 4),
-        (25, "They ___ to move next month.", 4),
+        (25, "By the time they move next month, they ___ made all necessary preparations.", 4),
         (26, "I ___ to have long hair.", 4),
 
         # C1+ Level Questions
@@ -265,7 +265,7 @@ def seed_test_answers():
         (22, "in", "on", "at", "on", 22),
         (23, "would", "use to", "will", "used to", 23),
         (24, "had", "have", "has", "had", 24),
-        (25, "are", "will", "going", "are going", 25),
+        (25, "have been", "are going to have", "will have", "will have", 25),
         (26, "used", "was used", "use", "used", 26),
 
         # C1+ Level Answers
