@@ -77,19 +77,20 @@
                                         height: dp(150)
 
                                         ElementCard:
-                                            image:"assets/images/time.png"
-                                            text:"Тест"  # practice with time tasks(rating)
+                                            image:"assets/images/story.png"
+                                            text:"Перевірте свої знання"  # practice with time tasks(rating)
                                             subtext:""
                                             items_count:""
                                             size_hint_x: 0.5
                                             on_press: app.root.current = 'testing'
 
                                         ElementCard:
-                                            image:"assets/images/krest.png"
-                                            text:"Activity"
+                                            image:"assets/images/time.png"
+                                            text:"Тест на час"
                                             subtext:""
                                             items_count:""
                                             size_hint_x: 0.5
+                                            on_press: app.root.current = 'time_test'
 
                                     # Третья строка кнопок
                                     BoxLayout:

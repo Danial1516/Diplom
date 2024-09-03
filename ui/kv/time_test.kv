@@ -1,0 +1,114 @@
+<TimeTest>:
+    name: 'time_test'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(20), dp(40), dp(20), dp(30)]
+                spacing: dp(50)
+                pos_hint: {"top": 1}
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(90)
+                    md_bg_color: 173/255, 216/255, 230/255, 1  # Цвет фона карточки
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"top": 0.95}
+
+                    MDLabel:
+                        text: "Тестування"
+                        font_name: "juneg"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(24)
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                    radius: [15, 15, 15, 15]
+                    padding: dp(10)
+
+                    MDLabel:
+                        text: "У цій вправі вам належить відповісти на якомога більше запитань за певний час. Коли ви почнете тест, таймер почне відлік, і вам потрібно буде відповісти на всі запитання, які встигнете, до його закінчення. Час на виконання завдання можете вибрати нижче. Постарайтеся зосередитися і працювати швидко, щоб набрати максимальну кількість правильних відповідей. Готові випробувати свої знання та швидкість? Почнемо!"
+                        font_name: "Clearsan"
+                        halign: "justify"
+                        theme_text_color: "Primary"
+                        font_size: sp(14)
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(90)
+                spacing: dp(10)
+                padding: [dp(20), dp(0), dp(10), dp(20)]  # Отступ снизу
+                pos_hint: {"center_x": 0.5, "center_y": 0.2}
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    width: dp(100)
+                    elevation: 2
+                    md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
+                    radius: [15, 15, 15, 15]
+                    padding: dp(10)
+                    on_release: app.root.current = 'time_test_questions'
+
+                    MDLabel:
+                        text: "30 секунд"
+                        font_name: "Clearsan"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(16)
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    width: dp(100)
+                    elevation: 2
+                    md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
+                    radius: [15, 15, 15, 15]
+                    padding: dp(10)
+                    on_release: app.root.current = 'time_test_questions'
+
+                    MDLabel:
+                        text: "1 хвилина"
+                        font_name: "Clearsan"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(16)
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    width: dp(100)
+                    elevation: 2
+                    md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
+                    radius: [15, 15, 15, 15]
+                    padding: dp(10)
+                    on_release: app.root.current = 'time_test_questions'
+
+                    MDLabel:
+                        text: "3 хвилини"
+                        font_name: "Clearsan"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(16)
+
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {"x": 0, "top": 1}  # Левый верхний угол
+            size_hint: None, None
+            size: dp(56), dp(56)  # Размер кнопки возврата
+            on_release: app.change_screen_item('main')
+
+
+

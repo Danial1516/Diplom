@@ -9,6 +9,8 @@ from logic.auth import login_user, register_user
 from logic.chat import ChatScreen
 from logic.learn import ElevatedWidget
 from logic.task import SpecCard
+from logic.time_test import TimeTest
+from logic.time_test_questions import TimeTestQuestions
 from logic.testing import TestingScreen
 from logic.testing_questions import TestingQuestions
 from logic.audio_quest import AudioQuestionsScreen
@@ -59,6 +61,8 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'audio_questions.kv'))
             Builder.load_file(os.path.join(kv_path, 'testing.kv'))
             Builder.load_file(os.path.join(kv_path, 'testing_questions.kv'))
+            Builder.load_file(os.path.join(kv_path, 'time_test.kv'))
+            Builder.load_file(os.path.join(kv_path, 'time_test_questions.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -90,6 +94,8 @@ class LangVoyageApp(MDApp):
             sm.add_widget((AudioQuestionsScreen(name="audio_question")))
             sm.add_widget((TestingScreen(name="testing")))
             sm.add_widget((TestingQuestions(name="testing_questions")))
+            sm.add_widget((TimeTest(name="time_test")))
+            sm.add_widget((TimeTestQuestions(name="time_test_questions")))
 
 
             logging.info("Все экраны загружены успешно.")
