@@ -50,6 +50,7 @@ class TestingQuestions(MDScreen):
         self.seconds = 0
         self.minutes = 20
         self.dialog = None
+        self.timer_event = None
 
         # Получение вопросов из базы данных
         questions = self.fetch_questions_and_answers()
@@ -177,7 +178,25 @@ class TestingQuestions(MDScreen):
 
     def on_enter(self):
         # Запуск обновления таймера каждую секунду при входе на экран
-        Clock.schedule_interval(self.update_timer, 1)
+        self.reset_timer()  # Сброс таймера
+        self.timer_event = Clock.schedule_interval(self.update_timer, 1)
+
+    def on_leave(self):
+        # Остановка таймера при выходе с экрана
+        if self.timer_event:
+            self.timer_event.cancel()
+            self.timer_event = None
+        self.reset_timer()  # Сброс таймера
+
+    def reset_timer(self):
+        # Сброс таймера
+        self.seconds = 0
+        self.minutes = 20
+        self.ids.timer_label.text = f"{self.minutes:02}:{self.seconds:02}"
+
+    def on_timer_finished(self):
+        # Логика для завершения таймера
+        self.show_results_dialog()
 
     def fetch_questions_and_answers(self):
         """
