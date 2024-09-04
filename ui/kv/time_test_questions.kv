@@ -122,3 +122,16 @@
             size_hint: None, None
             size: dp(56), dp(56)  # Размер кнопки возврата
             on_release: app.root.current = 'time_test'
+
+
+<CustomDialCont>:
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDLabel:
+        id: score_label
+        text: ""
+        theme_text_color: "Secondary"
+        halign: "center"
