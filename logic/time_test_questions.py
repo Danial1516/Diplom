@@ -40,23 +40,31 @@ class TimeTestQuestions(MDScreen):
         """Загружает новый вопрос и ответы, обновляет интерфейс."""
         question, answers = self.db.get_random_question_with_answers()
 
-        # Проверяем, что вопрос и ответы существуют и что вопрос еще не использовался
-        if question and question.id not in self.used_question_ids:
-            self.used_question_ids.add(question.id)  # Добавляем вопрос в список использованных
-            self.total_questions += 1  # Увеличиваем счетчик вопросов
+        # Переменная для хранения следующего вопроса
+        next_question = None
 
-            # Обновляем текст вопроса
-            self.ids.question_label.text = question.text
+        # Ищем вопрос, который не был использован
+        while next_question is None:
+            if question and question.id not in self.used_question_ids:
+                next_question = question
+                self.used_question_ids.add(question.id)  # Добавляем вопрос в список использованных
+                self.total_questions += 1  # Увеличиваем счетчик вопросов
+            else:
+                # Получаем следующий вопрос
+                question, answers = self.db.get_random_question_with_answers()
 
-            # Обновляем варианты ответов
-            self.ids.option_1.children[0].text = answers[0].first_option
-            self.ids.option_2.children[0].text = answers[0].second_option
-            self.ids.option_3.children[0].text = answers[0].third_option
+        # Обновляем текст вопроса
+        self.ids.question_label.text = next_question.text
 
-            # Связываем событие выбора ответа с методом обработки
-            self.ids.option_1.on_release = lambda: self.on_answer_selected(answers[0].first_option, answers[0].is_correct)
-            self.ids.option_2.on_release = lambda: self.on_answer_selected(answers[0].second_option, answers[0].is_correct)
-            self.ids.option_3.on_release = lambda: self.on_answer_selected(answers[0].third_option, answers[0].is_correct)
+        # Обновляем варианты ответов
+        self.ids.option_1.children[0].text = answers[0].first_option
+        self.ids.option_2.children[0].text = answers[0].second_option
+        self.ids.option_3.children[0].text = answers[0].third_option
+
+        # Связываем событие выбора ответа с методом обработки
+        self.ids.option_1.on_release = lambda: self.on_answer_selected(answers[0].first_option, answers[0].is_correct)
+        self.ids.option_2.on_release = lambda: self.on_answer_selected(answers[0].second_option, answers[0].is_correct)
+        self.ids.option_3.on_release = lambda: self.on_answer_selected(answers[0].third_option, answers[0].is_correct)
 
     def on_answer_selected(self, selected_answer, correct_answer):
         """Обрабатывает выбор ответа пользователем."""
