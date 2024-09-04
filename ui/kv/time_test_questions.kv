@@ -95,7 +95,26 @@
                                 valign: "center"
                                 theme_text_color: "Primary"
 
+        MDCard:
+            orientation: 'horizontal'
+            size_hint_y: None
+            size_hint_x: None
+            width: self.minimum_width
+            height: dp(46)
+            padding: dp(8)
+            md_bg_color: 200/255, 200/255, 200/255, 1
+            radius: [15, 15, 15, 15]
+            pos_hint: {"right": 0.95, "top": 1}
+            spacing: dp(10)
 
+            MDLabel:
+                id: timer_label
+                text: "00:00"
+                font_style: "H6"
+                halign: "center"
+                size_hint_x: None
+                width: dp(56)
+                font_size: sp(16)
 
         MDIconButton:
             icon: 'arrow-left'

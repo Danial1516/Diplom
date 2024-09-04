@@ -4,6 +4,10 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.exc import IntegrityError
 import logging
 from datetime import datetime
+import random
+from sqlalchemy.orm import joinedload
+from sqlalchemy.sql.expression import func
+
 
 # Настройка логирования
 logging.basicConfig(level=logging.DEBUG)
@@ -391,6 +395,14 @@ def seed_levels():
 class Database:
     def __init__(self):
         self.session = SessionLocal()
+
+    def get_random_question_with_answers(self):
+        """Получает случайный вопрос с его вариантами ответов."""
+        question = self.session.query(TestQuestion).order_by(func.random()).first()  # Получаем случайный вопрос
+        if question:
+            answers = self.session.query(TestAnswer).filter(TestAnswer.question_id == question.id).all()
+            return question, answers
+        return None, None
 
     def register_user(self, name, email, password):
         try:
