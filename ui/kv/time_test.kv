@@ -60,7 +60,7 @@
                     md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
                     radius: [15, 15, 15, 15]
                     padding: dp(10)
-                    on_release: app.root.current = 'time_test_questions'
+                    on_release: root.set_time_and_navigate('30 секунд')
 
                     MDLabel:
                         text: "30 секунд"
@@ -77,7 +77,7 @@
                     md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
                     radius: [15, 15, 15, 15]
                     padding: dp(10)
-                    on_release: app.root.current = 'time_test_questions'
+                    on_release: root.set_time_and_navigate('1 хвилина')
 
                     MDLabel:
                         text: "1 хвилина"
@@ -94,7 +94,7 @@
                     md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
                     radius: [15, 15, 15, 15]
                     padding: dp(10)
-                    on_release: app.root.current = 'time_test_questions'
+                    on_release: root.set_time_and_navigate('3 хвилини')
 
                     MDLabel:
                         text: "3 хвилини"
