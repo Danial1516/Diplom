@@ -50,7 +50,7 @@ class Category(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50), unique=True, nullable=False)
 
-class ImageChoiceQuestion(Base):
+class ImageChoice(Base):
     __tablename__ = 'image_choice_questions'
     id = Column(Integer, primary_key=True, index=True)
     image_url = Column(String(255), nullable=False)
@@ -129,7 +129,7 @@ def create_tables():
     seed_test_questions()
     seed_test_answers()
     seed_categories()
-    seed_image_choice_questions()
+    seed_image_choice()
 
 
 def seed_true_false_answers():
@@ -490,7 +490,7 @@ def seed_categories():
 
 
 
-def seed_image_choice_questions():
+def seed_image_choice():
     questions = [
         (1, "https://drive.google.com/file/d/1M7o2mGVxQQSfg5Qoz-ohNh42bzl1tF8J/view?usp=drive_link", "Plane", "Helicopter", "Train", "Ship", 1),
         (2, "https://drive.google.com/file/d/1rJ4hWNY2ry4N6fePQXd3CvCVcvNs2AW6/view?usp=drive_link", "Bus", "Trolleybus", "Taxi", "Metro", 1),
@@ -568,7 +568,7 @@ def seed_image_choice_questions():
 
     for id, image_url, correct_caption, wrong_caption1, wrong_caption2, wrong_caption3, category_id in questions:
         try:
-            image_choice_question = ImageChoiceQuestion(
+            image_choice_question = ImageChoice(
                 id=id,
                 image_url=image_url,
                 correct_caption=correct_caption,
