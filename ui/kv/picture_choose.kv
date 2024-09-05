@@ -2,7 +2,130 @@
     name: "picture_choose_screen"
     MDScreen:
         md_bg_color: 28/255, 140/255, 140/255, 1
+        FloatLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(20), dp(40), dp(20), dp(30)]
+                spacing: dp(20)
+                pos_hint: {"top": 1}
 
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(70)
+                    md_bg_color: 173/255, 216/255, 230/255, 1
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"top": 0.95}
+
+                    MDLabel:
+                        text: "Виберіть зображення з правильним підписом"
+                        font_name: "juneg"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(22)
+
+
+                MDGridLayout:
+                    cols: 2
+                    size_hint: (None, None)  # Отключаем автоматическое определение размера
+                    width: self.minimum_width  # Задаем ширину по минимальному размеру
+                    height: self.minimum_height  # Задаем высоту по минимальному размеру
+                    row_default_height: dp(200)  # Высота строк
+                    row_force_default: True  # Принудительно использовать заданную высоту строк
+                    spacing: dp(30)
+                    pos_hint: {"center_x": 0.5}  # Выровнять по центру экрана
+                    padding: [dp(10), dp(10), dp(10), dp(10)]
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_x: None
+                        width: dp(150)
+                        elevation: 2
+                        md_bg_color: 240/255, 240/255, 240/255, 1
+                        radius: [15, 15, 15, 15]
+                        padding: [dp(10), dp(30), dp(10), dp(10)]
+
+                        Image:
+                            source:'assets/images/travel.png'
+                            size_hint_y: None
+                            height: dp(100)
+                            pos_hint: {'center_y': 0.5}
+
+                        MDLabel:
+                            text: "Подорож"
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(16)
+
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_x: None
+                        width: dp(150)
+                        elevation: 2
+                        md_bg_color: 240/255, 240/255, 240/255, 1
+                        radius: [15, 15, 15, 15]
+                        padding: [dp(10), dp(30), dp(10), dp(10)]
+
+                        Image:
+                            source:'assets/images/hobby.png'
+                            size_hint_y: None
+                            height: dp(100)
+                            pos_hint: {'center_y': 0.5}
+
+                        MDLabel:
+                            text: "Хобі"
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(16)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_x: None
+                        width: dp(150)
+                        elevation: 2
+                        md_bg_color: 240/255, 240/255, 240/255, 1
+                        radius: [15, 15, 15, 15]
+                        padding: [dp(10), dp(30), dp(10), dp(10)]
+
+                        Image:
+                            source:'assets/images/graduation.png'
+                            size_hint_y: None
+                            height: dp(100)
+                            pos_hint: {'center_y': 0.5}
+
+                        MDLabel:
+                            text: "Освіта"
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(16)
+
+                    MDCard:
+                        orientation: 'vertical'
+                        size_hint_x: None
+                        width: dp(150)
+                        elevation: 2
+                        md_bg_color: 240/255, 240/255, 240/255, 1
+                        radius: [15, 15, 15, 15]
+                        padding: [dp(10), dp(30), dp(10), dp(10)]
+
+                        Image:
+                            source:'assets/images/art.png'
+                            size_hint_y: None
+                            height: dp(100)
+                            pos_hint: {'center_y': 0.5}
+
+                        MDLabel:
+                            text: "Мистецтво"
+                            font_name: "Clearsan"
+                            halign: "center"
+                            theme_text_color: "Primary"
+                            font_size: sp(16)
 
 
 
