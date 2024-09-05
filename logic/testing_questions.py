@@ -212,12 +212,12 @@ class TestingQuestions(MDScreen):
             for question in questions:
                 # Запрос ответов на каждый вопрос
                 answers = session.query(TestAnswer).filter(TestAnswer.question_id == question.id).first()
-
-                if answers:
-                    questions_with_answers.append({
-                        "question": question.text,
-                        "options": [answers.first_option, answers.second_option, answers.third_option]
-                    })
+                if not answers:
+                    continue
+                questions_with_answers.append({
+                    "question": question.text,
+                    "options": [answers.first_option, answers.second_option, answers.third_option]
+                })
 
         except Exception as e:
             print(f"Error fetching questions and answers: {e}")

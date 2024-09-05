@@ -45,6 +45,22 @@ class Level(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
 
+class Category(Base):
+    __tablename__ = 'categories'
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(50), unique=True, nullable=False)
+
+class ImageChoiceQuestion(Base):
+    __tablename__ = 'image_choice_questions'
+    id = Column(Integer, primary_key=True, index=True)
+    image_url = Column(String(255), nullable=False)
+    correct_caption = Column(String(255), nullable=False)
+    wrong_caption1 = Column(String(255), nullable=False)
+    wrong_caption2 = Column(String(255), nullable=False)
+    wrong_caption3 = Column(String(255), nullable=False)
+    category_id = Column(Integer, ForeignKey('categories.id'))  # Связь с таблицей категорий
+
+    category = relationship('Category')
 
 class Audio(Base):
     __tablename__ = 'audio'
@@ -112,6 +128,8 @@ def create_tables():
     seed_true_false_answers()
     seed_test_questions()
     seed_test_answers()
+    seed_categories()
+    seed_image_choice_questions()
 
 
 def seed_true_false_answers():
@@ -447,4 +465,122 @@ class Database:
 
         return streak
 
+def seed_categories():
+    categories = [
+        (1, "trip"),
+        (2, "hobby"),
+        (3, "education"),
+        (4, "art"),
+        (5, "animals"),
+        (6, "food")
+    ]
 
+    session = SessionLocal()
+    for id, name in categories:
+        # Использование merge для обновления существующих записей и добавления новых
+        category = Category(id=id, name=name)
+        try:
+            session.merge(category)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            logging.error(f"Failed to insert or update category {id}: {e}")
+
+    session.close()
+
+
+
+def seed_image_choice_questions():
+    questions = [
+        (1, "url1", "Plane", "Helicopter", "Train", "Ship", 1),
+        (2, "url1", "Bus", "Trolleybus", "Taxi", "Metro", 1),
+        (3, "url1", "Taxi", "Bus", "Fire truck", "Police car", 1),
+        (4, "url1", "Train", "Metro", "Tram", "Truck", 1),
+        (5, "url1", "Helicopter", "Plane", "Hot air balloon", "Paraglider", 1),
+        (6, "url1", "Bicycle", "Scooter", "Motorcycle", "Skateboard", 1),
+        (7, "url1", "Trolleybus", "Train", "Tram", "Metro", 1),
+        (8, "url1", "Yacht", "Raft", "Cruise ship", "Submarine", 1),
+        (9, "url1", "Cruise ship", "Raft", "Fishing boat", "Tanker", 1),
+        (10, "url1", "Jet ski on water", "Catamaran", "Motorboat", "Paddleboard", 1),
+        (11, "url1", "Long-distance truck", "Pickup", "Van", "Sedan", 1),
+        (12, "url1", "Sport motorcycle", "Bicycle", "Scooter", "Jet ski", 1),
+        (13, "url1", "Chess", "Domino", "Crossword", "Sudoku", 2),
+        (14, "url1", "Yoga", "Pilates", "Aerobics", "Tai Chi", 2),
+        (15, "url1", "Painting on canvas", "Embroidery", "Sculpture", "Photography", 2),
+        (16, "url1", "Playing guitar", "Piano", "Drums", "Saxophone", 2),
+        (17, "url1", "Photographer in nature", "Cameraman", "Journalist", "Artist", 2),
+        (18, "url1", "Gardening", "Fishing", "Hunting", "Swimming", 2),
+        (19, "url1", "Fishing by river", "Hunting", "Gardening", "Tourism", 2),
+        (20, "url1", "Reading a book", "Writing", "Cooking", "Playing cards", 2),
+        (21, "url1", "Running outdoors", "Walking", "Cycling", "Yoga", 2),
+        (22, "url1", "Cooking food", "Washing", "Cleaning", "Office work", 2),
+        (23, "url1", "Rock climbing", "Hiking", "Surfing", "Skiing", 2),
+        (24, "url1", "Dancing in studio", "Gymnastics", "Fencing", "Boxing", 2),
+        (25, "url1", "Textbook", "Notebook", "Atlas", "Magazine", 3),
+        (26, "url1", "Classroom blackboard", "Screened monitor", "Mirror", "Window", 3),
+        (27, "url1", "Chemistry laboratory", "Library", "Classroom", "Cafe", 3),
+        (28, "url1", "Reading in library", "Cafe", "Office", "Classroom", 3),
+        (29, "url1", "Computer lab", "Sports hall", "Laboratory", "Art studio", 3),
+        (30, "url1", "Student with textbooks", "Student with dumbbells", "Student with tools", "Student with paints", 3),
+        (31, "url1", "Taking an exam", "Sports competition", "Construction work", "Dance performance", 3),
+        (32, "url1", "Attending lecture", "Watching a movie", "Meditation", "Music concert", 3),
+        (33, "url1", "Student campus", "Office building", "Sports complex", "Residential area", 3),
+        (34, "url1", "Globe", "Gyroscope", "Moon model", "Telescope", 3),
+        (35, "url1", "Diploma award", "Theater performance", "Football match", "Concert", 3),
+        (36, "url1", "Teacher in classroom", "Doctor in hospital", "Chef in kitchen", "Pilot in airplane", 3),
+        (37, "url1", "Painting", "Photography", "Engraving", "Sketch", 4),
+        (38, "url1", "Marble sculpture", "Painting", "Graffiti", "Fresco", 4),
+        (39, "url1", "Artist's easel", "Book stand", "Table", "Drawing board", 4),
+        (40, "url1", "Theater stage", "Movie screen", "Art gallery", "Opera", 4),
+        (41, "url1", "Ballet troupe", "Football team", "Dance school", "Puppet theater", 4),
+        (42, "url1", "Symphony orchestra", "Jazz band", "Rock band", "Quartet", 4),
+        (43, "url1", "Ceramic vase", "Glass bowl", "Wooden box", "Cardboard model", 4),
+        (44, "url1", "Black-and-white photograph", "Film", "Drawing", "Engraving", 4),
+        (45, "url1", "Puppet show", "Opera theater", "Circus performance", "Street concert", 4),
+        (46, "url1", "Dance performance", "Theater play", "Concert", "Film", 4),
+        (47, "url1", "Street art", "Advertisement", "Poster", "Drawing on paper", 4),
+        (48, "url1", "Historical building", "Modern office", "Shopping center", "Stadium", 4),
+        (49, "url1", "African lion", "Tiger", "Leopard", "Cheetah", 5),
+        (50, "url1", "Giant panda", "Grizzly bear", "Koala", "Raccoon", 5),
+        (51, "url1", "Ocean dolphin", "Whale", "Walrus", "Seal", 5),
+        (52, "url1", "Antarctic penguin", "Seagull", "Albatross", "Pelican", 5),
+        (53, "url1", "African elephant", "Rhinoceros", "Buffalo", "Hippo", 5),
+        (54, "url1", "Giraffe in savannah", "Zebra", "Llama", "Camel", 5),
+        (55, "url1", "Grizzly bear", "Koala", "Lemur", "Fox", 5),
+        (56, "url1", "Orangutan in jungle", "Gorilla", "Chimpanzee", "Baboon", 5),
+        (57, "url1", "Goldfish", "Crucian carp", "Cuttlefish", "Starfish", 5),
+        (58, "url1", "Bald eagle", "Hawk", "Falcon", "Condor", 5),
+        (59, "url1", "Gray wolf", "Jackal", "Coyote", "Fox", 5),
+        (60, "url1", "Kangaroo in Australia", "Koala", "Lemur", "Opossum", 5),
+        (61, "url1", "Italian pizza", "Pie", "Cake", "Lasagna", 6),
+        (62, "url1", "Japanese sushi", "Sashimi", "Rolls", "Maki", 6),
+        (63, "url1", "Spaghetti with tomato sauce", "Macaroni", "Noodles", "Ravioli", 6),
+        (64, "url1", "Classic burger", "Sandwich", "Taco", "Hot dog", 6),
+        (65, "url1", "Fresh vegetable salad", "Fruit cocktail", "Casserole", "Omelette", 6),
+        (66, "url1", "Chocolate cake", "Honey cake", "Cheesecake", "Biscuit", 6),
+        (67, "url1", "Omelette with herbs", "Hamburger", "Scrambled eggs", "Frittata", 6),
+        (68, "url1", "Fruit smoothie", "Milkshake", "Compote", "Juice", 6),
+        (69, "url1", "Apple pie", "Muffin", "Croissant", "Cheesecake", 6),
+        (70, "url1", "Cheese platter", "Fruit platter", "Meat platter", "Salad", 6),
+    ]
+
+    session = SessionLocal()
+
+    for id, image_url, correct_caption, wrong_caption1, wrong_caption2, wrong_caption3, category_id in questions:
+        try:
+            image_choice_question = ImageChoiceQuestion(
+                id=id,
+                image_url=image_url,
+                correct_caption=correct_caption,
+                wrong_caption1=wrong_caption1,
+                wrong_caption2=wrong_caption2,
+                wrong_caption3=wrong_caption3,
+                category_id=category_id
+            )
+            session.merge(image_choice_question)
+            session.commit()
+        except IntegrityError as e:
+            session.rollback()
+            print(f"Failed to insert or update ImageChoiceQuestion {id}: {e}")
+
+    session.close()
