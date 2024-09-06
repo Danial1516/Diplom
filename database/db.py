@@ -414,6 +414,15 @@ class Database:
     def __init__(self):
         self.session = SessionLocal()
 
+    def get_random_images(self, category_id, limit=4):
+        return (
+            self.session.query(ImageChoice)
+            .filter(ImageChoice.category_id == category_id)
+            .order_by(func.random())
+            .limit(limit)
+            .all()
+        )
+
     def get_random_question_with_answers(self):
         """Получает случайный вопрос с его вариантами ответов."""
         question = self.session.query(TestQuestion).order_by(func.random()).first()  # Получаем случайный вопрос

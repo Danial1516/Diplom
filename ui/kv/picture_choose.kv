@@ -127,7 +127,20 @@
                             theme_text_color: "Primary"
                             font_size: sp(16)
 
+            MDCard:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: dp(70)
+                md_bg_color: 255/255, 223/255, 186/255, 1
+                radius: [15, 15, 15, 15]
+                pos_hint: {"top": 0.10}
 
+                MDLabel:
+                    text: "Перевірити"
+                    font_name: "juneg"
+                    halign: "center"
+                    theme_text_color: "Primary"
+                    font_size: sp(22)
 
         MDIconButton:
             icon: 'arrow-left'
