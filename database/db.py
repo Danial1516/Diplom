@@ -501,18 +501,18 @@ def seed_categories():
 
 def seed_image_choice():
     questions = [
-        (1, "plane.png", "Plane", "Helicopter", "Train", "Ship", 1),
-        (2, "bus.png", "Bus", "Trolleybus", "Taxi", "Metro", 1),
+        (1, "plane.png", "Plane", "Helicopter", "Hot Air Balloon", "Glider", 1),
+        (2, "bus.png", "Bus", "Trolleybus", "Tram", "Minibus", 1),
         (3, "taxi.png", "Taxi", "Bus", "Fire truck", "Police car", 1),
-        (4, "train.png", "Train", "Ship", "Taxi", "Truck", 1),
+        (4, "train.png", "Train", "Ship", "Submarine", "Truck", 1),
         (5, "helicopter.png", "Helicopter", "Plane", "Hot air balloon", "Paraglider", 1),
         (6, "bicycle.png", "Bicycle", "Scooter", "Motorcycle", "Skateboard", 1),
         (7, "motorboat.png", "Motorboat", "Train", "Tram", "Metro", 1),
         (8, "yacht.png", "Yacht", "Raft", "Cruise ship", "Submarine", 1),
         (9, "cruise-liner.png", "Cruise ship", "Raft", "Fishing boat", "Tanker", 1),
         (10, "watercraft.png", "Jet ski", "Catamaran", "Motorboat", "Paddleboard", 1),
-        (11, "truck.png", "Long-distance truck", "Pickup", "Van", "Sedan", 1),
-        (12, "motorcycle.png", "Sport motorcycle", "Bicycle", "Scooter", "Jet ski", 1),
+        (11, "truck.png", "Long-distance truck", "Pickup Truck", "Van", "Sedan", 1),
+        (12, "motorcycle.png", "Sport motorcycle", "Bicycle", "Scooter", "Segway", 1),
         (13, "url1", "Chess", "Domino", "Crossword", "Sudoku", 2),
         (14, "url1", "Yoga", "Pilates", "Aerobics", "Tai Chi", 2),
         (15, "url1", "Painting on canvas", "Embroidery", "Sculpture", "Photography", 2),
