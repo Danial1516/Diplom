@@ -47,6 +47,7 @@
                         md_bg_color: 240/255, 240/255, 240/255, 1
                         radius: [15, 15, 15, 15]
                         padding: [dp(10), dp(30), dp(10), dp(10)]
+                        on_release: root.select_card('card1')
 
                         Image:
                             id: image1
@@ -73,6 +74,7 @@
                         md_bg_color: 240/255, 240/255, 240/255, 1
                         radius: [15, 15, 15, 15]
                         padding: [dp(10), dp(30), dp(10), dp(10)]
+                        on_release: root.select_card('card2')
 
                         Image:
                             id: image2
@@ -98,6 +100,7 @@
                         md_bg_color: 240/255, 240/255, 240/255, 1
                         radius: [15, 15, 15, 15]
                         padding: [dp(10), dp(30), dp(10), dp(10)]
+                        on_release: root.select_card('card3')
 
                         Image:
                             id: image3
@@ -123,6 +126,7 @@
                         md_bg_color: 240/255, 240/255, 240/255, 1
                         radius: [15, 15, 15, 15]
                         padding: [dp(10), dp(30), dp(10), dp(10)]
+                        on_release: root.select_card('card4')
 
                         Image:
                             id: image4
@@ -140,12 +144,15 @@
                             font_size: sp(16)
 
             MDCard:
+                id: check_button
                 orientation: 'vertical'
                 size_hint_y: None
                 height: dp(70)
+                elevation: 2
                 md_bg_color: 255/255, 223/255, 186/255, 1
                 radius: [15, 15, 15, 15]
                 pos_hint: {"top": 0.10}
+                on_release: root.check_selection() if root.ids['check_button'].children[0].text == "Перевірити" else root.next_round()
 
                 MDLabel:
                     text: "Перевірити"
