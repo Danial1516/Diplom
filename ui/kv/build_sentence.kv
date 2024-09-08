@@ -1,0 +1,76 @@
+<BuildSentenceScreen>:
+    name: 'build_sentence'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+        FloatLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(20), dp(40), dp(20), dp(30)]
+                spacing: dp(50)
+                pos_hint: {"top": 1}
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(90)
+                    md_bg_color: 173/255, 216/255, 230/255, 1
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"top": 0.95}
+
+                    MDLabel:
+                        text: "Виберіть Категорію"
+                        font_name: "juneg"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(24)
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height  # Установите необходимую высоту
+                    md_bg_color: 255/255, 223/255, 186/255, 1  # Цвет фона карточки
+                    padding: dp(10)
+                    radius: [15, 15, 15, 15]
+
+                    MDLabel:
+                        text: "Описание"
+                        font_name: "Clearsan"
+                        halign: "justify"
+                        theme_text_color: "Primary"
+                        font_size: sp(14)
+                        markup: True
+                        size_hint_y: None
+                        height: self.texture_size[1] # [color=ffffff]Подлежащее[/color]
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    size_hint_x: None
+                    width: dp(200)
+                    height: self.minimum_height  # Устанавливаем необходимую высоту
+                    md_bg_color: 200/255, 255/255, 200/255, 1  # Цвет фона карточки
+                    padding: dp(10)
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {'center_x': 0.5}
+                    on_release: app.root.current = 'build_sentence_lesson'
+
+                    MDLabel:
+                        text: "Почати"
+                        font_name: "Clearsan"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(18)
+                        markup: True
+                        size_hint_y: None
+                        height: self.texture_size[1]  # Автоматическая высота в зависимости от текста
+
+
+
+    MDIconButton:
+        icon: 'arrow-left'
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: None, None
+        size: dp(56), dp(56)
+        on_release: app.change_screen_item('main')

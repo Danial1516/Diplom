@@ -5,6 +5,8 @@ from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
 from kivymd.toast import toast
 
+from logic.build_sentence import BuildSentenceScreen
+from logic.build_sentence_lesson import BuildSentenceLessonScreen
 from logic.picture import PictureScreen
 from logic.picture_choose import PictureChooseScreen
 from ui.screens import LoginScreen, RegisterScreen, SpecialPhrasesWordsScreen, ExpresPreferencesScreen, FuturePerfectScreen, GrammaScreen, FuturePerfectContinuousScreen,PastSimpleScreen,PastContinuousScreen, FutureContinuousScreen, FutureSimpleScreen, PastPerfectScreen, PastPerfectContinuousScreen, MainScreen,PresentPerfectScreen,PresentPerfectContinuousScreen, HomeScreen, TasksScreen, RatingScreen, NotificationsScreen, TimeConstructionsScreen, PresentSimpleScreen, PresentContinuousScreen
@@ -68,6 +70,8 @@ class LangVoyageApp(MDApp):
             Builder.load_file(os.path.join(kv_path, 'time_test_questions.kv'))
             Builder.load_file(os.path.join(kv_path, 'picture_screen.kv'))
             Builder.load_file(os.path.join(kv_path, 'picture_choose.kv'))
+            Builder.load_file(os.path.join(kv_path, 'build_sentence.kv'))
+            Builder.load_file(os.path.join(kv_path, 'build_sentence_les.kv'))
 
             sm = ScreenManager(transition=NoTransition())
             sm.add_widget(LoginScreen(name='login'))
@@ -103,6 +107,8 @@ class LangVoyageApp(MDApp):
             sm.add_widget((TimeTestQuestions(name="time_test_questions")))
             sm.add_widget((PictureScreen(name="picture_screen")))
             sm.add_widget((PictureChooseScreen(name="picture_choose_screen")))
+            sm.add_widget((BuildSentenceScreen(name="build_sentence")))
+            sm.add_widget((BuildSentenceLessonScreen(name="build_sentence_lesson")))
 
             logging.info("Все экраны загружены успешно.")
             return sm

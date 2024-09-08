@@ -1,0 +1,35 @@
+<BuildSentenceLessonScreen>:
+    name: 'build_sentence_lesson'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+        FloatLayout:
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [dp(20), dp(40), dp(20), dp(30)]
+                spacing: dp(50)
+                pos_hint: {"top": 1}
+
+                MDCard:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(90)
+                    md_bg_color: 173/255, 216/255, 230/255, 1
+                    radius: [15, 15, 15, 15]
+                    pos_hint: {"top": 0.95}
+
+                    MDLabel:
+                        text: "Виб"
+                        font_name: "juneg"
+                        halign: "center"
+                        theme_text_color: "Primary"
+                        font_size: sp(24)
+
+
+    MDIconButton:
+        icon: 'arrow-left'
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: None, None
+        size: dp(56), dp(56)
+        on_release: app.root.current = 'build_sentence'
