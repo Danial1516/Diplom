@@ -134,12 +134,53 @@
                         name: 'notifications'
                         icon: 'bell'
 
-                        MDBoxLayout:
-                            orientation: 'vertical'
+                        MDScreen:
                             md_bg_color: 28/255, 140/255, 140/255, 1
-                            MDLabel:
-                                text: "notification"
-                                halign: "center"
+                            FloatLayout:
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    padding: [dp(20), dp(40), dp(20), dp(30)]
+                                    spacing: dp(50)
+                                    pos_hint: {"top": 1}
+
+
+                                    MDCard:
+                                        size_hint: None, None
+                                        width: "300dp"
+                                        size_hint_y: None
+                                        height: self.minimum_height
+                                        orientation: "vertical"
+                                        md_bg_color: 255/255, 223/255, 186/255, 1
+                                        padding: "8dp"
+                                        spacing: "8dp"
+                                        pos_hint: {"top": 1, "center_x": 0.5}
+
+                                        MDLabel:
+                                            text: "Заголовок"
+                                            font_name: "Clearsan"
+                                            halign: "center"
+                                            theme_text_color: "Primary"
+                                            size_hint_y: None
+                                            height: self.texture_size[1]
+                                            pos_hint: {"top": 1}
+
+                                        MDSeparator:
+                                            height: "2dp"
+
+                                        MDLabel:
+                                            text: "Контент здесь\n 1 12\n 1 "
+                                            halign: "left"
+                                            valign: "top"
+                                            font_name: "Clearsan"
+                                            theme_text_color: "Secondary"
+                                            size_hint_y: None
+                                            text_size: self.width, None
+                                            height: self.texture_size[1]
+
+
+
 
 
                     MDBottomNavigationItem:

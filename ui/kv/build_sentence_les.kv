@@ -20,11 +20,33 @@
                     pos_hint: {"top": 0.95}
 
                     MDLabel:
-                        text: "Виб"
+                        text: "Складіть почуте речення"
                         font_name: "juneg"
                         halign: "center"
                         theme_text_color: "Primary"
                         font_size: sp(24)
+
+                MDCard:
+                    orientation: 'horizontal'
+                    size_hint_x: 0.5
+                    size_hint_y: None
+                    elevation: 1
+                    md_bg_color: 255/255, 225/255, 158/255, 1
+                    height: self.minimum_height
+                    pos_hint: {"center_x": 0.5, "y": 0.45}
+                    padding: "8dp"
+                    spacing: "8dp"
+
+                    MDIcon:
+                        icon: 'play'
+
+                    MDLabel:
+                        text: 'Прослухати'
+                        valign: 'middle'
+                        halign: "center"
+
+
+
 
 
     MDIconButton:
@@ -33,3 +55,32 @@
         size_hint: None, None
         size: dp(56), dp(56)
         on_release: app.root.current = 'build_sentence'
+
+
+<WrapLayout>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: self.minimum_height
+    spacing: dp(10)
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<CustMDCard>:
+    orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    md_bg_color: 245/255, 245/255, 220/255, 1
+    padding: dp(10)
+    radius: [15, 15, 15, 15]
+
+    WrapLayout:
+        id: words_box
+        orientation: 'horizontal'
+        spacing: dp(10)
+        size_hint_y: None
+        height: self.minimum_height
