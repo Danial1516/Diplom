@@ -45,6 +45,27 @@ class Level(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
 
+    sentences = relationship("Sentence", back_populates="level")
+
+class Sentence(Base):
+    __tablename__ = 'sentences'
+    id = Column(Integer, primary_key=True, index=True)
+    text = Column(String, nullable=False)
+    level_id = Column(Integer, ForeignKey('level.id'), nullable=False)
+
+    level = relationship("Level", back_populates="sentences")
+    words = relationship("SentenceWord", back_populates="sentence")
+
+
+class SentenceWord(Base):
+    __tablename__ = 'sentence_words'
+    id = Column(Integer, primary_key=True, index=True)
+    sentence_id = Column(Integer, ForeignKey('sentences.id'), nullable=False)
+    word = Column(String(50), nullable=False)
+    position = Column(Integer, nullable=False)
+
+    sentence = relationship("Sentence", back_populates="words")
+
 class Category(Base):
     __tablename__ = 'categories'
     id = Column(Integer, primary_key=True, index=True)
@@ -130,7 +151,68 @@ def create_tables():
     seed_test_answers()
     seed_categories()
     seed_image_choice()
+    seed_sentences_and_words()
 
+
+def seed_sentences_and_words():
+    sentences = [
+        # Уровень A1
+        {"level_id": 1, "text": "The cat is on the table.",
+         "words": ["cat", "is", "on", "the", "table", "dog", "car", "run"]},
+        {"level_id": 1, "text": "I have a red apple.",
+         "words": ["I", "have", "a", "red", "apple", "banana", "blue", "car"]},
+
+        # Уровень A2
+        {"level_id": 2, "text": "She likes to play tennis.",
+         "words": ["She", "likes", "to", "play", "tennis", "soccer", "bike", "drive"]},
+        {"level_id": 2, "text": "The weather is sunny today.",
+         "words": ["The", "weather", "is", "sunny", "today", "cloudy", "rain", "snow"]},
+
+        # Уровень B1
+        {"level_id": 3, "text": "They went to the museum last weekend.",
+         "words": ["They", "went", "to", "the", "museum", "last", "weekend", "beach", "yesterday"]},
+        {"level_id": 3, "text": "He is learning how to cook Italian food.",
+         "words": ["He", "is", "learning", "how", "to", "cook", "Italian", "food", "German", "paint"]},
+
+        # Уровень B2
+        {"level_id": 4, "text": "The economic situation is improving gradually.",
+         "words": ["The", "economic", "situation", "is", "improving", "gradually", "suddenly", "worse", "quickly"]},
+        {"level_id": 4, "text": "They decided to invest in renewable energy.",
+         "words": ["They", "decided", "to", "invest", "in", "renewable", "energy", "fossil", "funds", "markets"]},
+
+        # Уровень C1
+        {"level_id": 5, "text": "The novel explores the complexities of human relationships.",
+         "words": ["The", "novel", "explores", "the", "complexities", "of", "human", "relationships", "simple", "history"]},
+        {"level_id": 5, "text": "His performance was lauded by critics and audiences alike.",
+         "words": ["His", "performance", "was", "lauded", "by", "critics", "and", "audiences", "ignored", "friends", "enemies"]}
+    ]
+
+    session = SessionLocal()
+
+    for sentence_data in sentences:
+        # Создание предложения
+        sentence = Sentence(text=sentence_data["text"], level_id=sentence_data["level_id"])
+
+        try:
+            # Сохранение предложения в базе данных
+            session.add(sentence)
+            session.commit()
+
+            # Получение ID добавленного предложения
+            sentence_id = sentence.id
+
+            # Создание слов для предложения
+            for position, word in enumerate(sentence_data["words"], start=1):
+                sentence_word = SentenceWord(sentence_id=sentence_id, word=word, position=position)
+                session.add(sentence_word)
+
+            session.commit()
+
+        except IntegrityError as e:
+            session.rollback()
+            logging.error(f"Ошибка при добавлении предложения: {e}")
+
+    session.close()
 
 def seed_true_false_answers():
     true_false_questions = [
