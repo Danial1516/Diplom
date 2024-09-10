@@ -190,7 +190,16 @@ def seed_sentences_and_words():
     session = SessionLocal()
 
     for sentence_data in sentences:
-        # Создание предложения
+        # Проверяем, существует ли предложение
+        existing_sentence = session.query(Sentence).filter_by(
+            text=sentence_data["text"], level_id=sentence_data["level_id"]
+        ).first()
+
+        if existing_sentence:
+            logging.info(f"Sentence already exists: {sentence_data['text']}")
+            continue
+
+        # Создаем новое предложение
         sentence = Sentence(text=sentence_data["text"], level_id=sentence_data["level_id"])
 
         try:

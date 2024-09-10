@@ -1,67 +1,46 @@
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.card import MDCard
-from kivymd.uix.label import MDLabel
+from kivy.lang import Builder
 from kivymd.uix.screen import MDScreen
+from kivy.metrics import dp
+from kivymd.uix.card import MDCard
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label import MDLabel
 
 
-class WrapLayout(MDBoxLayout):
+class CustMDCard(MDBoxLayout):
+    pass
+
+
+class BuildSentenceLessonScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.orientation = 'horizontal'
-        self.spacing = kwargs.get('spacing', 10)
-        self._update_layout()
+        self.update_cards(["word1", "word2", "wo1244rd3", "word4",  "word4",  "word4",  "word4"])  # Замените на ваш список слов
 
-    def on_size(self, *args):
-        self._update_layout()
+    def update_cards(self, words_list):
+        # Удаляем все предыдущие элементы, чтобы начать заново
+        self.ids.cards_container.clear_widgets()
 
-    def _update_layout(self):
-        xpos = 0
-        ypos = 0
-        row_height = 0
+        # Переменная для текущего MDBoxLayout
+        current_box_layout = MDBoxLayout(orientation='horizontal', spacing=dp(10), size_hint_y=None, height=dp(40))
+        self.ids.cards_container.add_widget(current_box_layout)
 
-        for child in self.children:
-            child_width = child.width
-            child_height = child.height
+        for i, word in enumerate(words_list):
+            if i > 0 and i % 3 == 0:
+                # Если 3 слова уже добавлены, создаем новый MDBoxLayout
+                current_box_layout = MDBoxLayout(orientation='horizontal', spacing=dp(10), size_hint_y=None,
+                                                 height=dp(40))
+                self.ids.cards_container.add_widget(current_box_layout)
 
-            if xpos + child_width > self.width:
-                xpos = 0
-                ypos += row_height
-                row_height = 0
+            # Создаем CustMDCard с MDCard внутри
+            cust_md_card = CustMDCard()
+            card = MDCard(size_hint_x=0.5, md_bg_color=[1, 1, 1, 1], radius=[15, 15, 15, 15], elevation=1)
 
-            child.pos = (xpos, ypos)
-            xpos += child_width + self.spacing
-            row_height = max(row_height, child_height)
-
-        self.height = ypos + row_height
-
-class CustMDCard(MDCard):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.words = kwargs.get('words', [])
-
-    def update_words(self):
-        words_box = self.ids.words_box
-        words_box.clear_widgets()
-
-        for word in self.words:
-            card = MDCard(
-                size_hint_x=None,
-                width="150dp",
-                md_bg_color=[255/255, 255/255, 255/255, 1],
-                radius=[15, 15, 15, 15],
-                elevation=1,
-            )
-
-            card_label = MDLabel(
+            card.add_widget(MDLabel(
                 text=word,
                 font_name="juneg",
                 halign="center",
                 valign="center",
-                theme_text_color="Primary",
-            )
+                theme_text_color="Primary"
+            ))
 
-            card.add_widget(card_label)
-            words_box.add_widget(card)
-
-class BuildSentenceLessonScreen(MDScreen):
-    pass
+            cust_md_card.add_widget(card)
+            current_box_layout.add_widget(cust_md_card)
