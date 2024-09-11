@@ -40,6 +40,12 @@ class UserLogin(Base):
 User.logins = relationship('UserLogin', back_populates='user', cascade="all, delete-orphan")
 
 
+class Notification(Base):
+    __tablename__ = 'notifications'
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(255), nullable=False)
+    description = Column(String, nullable=False)
+
 class Level(Base):
     __tablename__ = 'level'
     id = Column(Integer, primary_key=True, index=True)
@@ -152,6 +158,7 @@ def create_tables():
     seed_categories()
     seed_image_choice()
     seed_sentences_and_words()
+    seed_notifications()
 
 
 def seed_sentences_and_words():
@@ -409,6 +416,33 @@ def seed_test_answers():
         except IntegrityError as e:
             session.rollback()
             print(f"Failed to insert or update FillInQuestion {id}: {e}")
+
+    session.close()
+
+
+def seed_notifications():
+    notifications = [
+        ("Welcome", "Thank you for using our application!"),
+        ("Update Available", "A new update is available for download."),
+        ("Maintenance", "Scheduled maintenance will occur tonight."),
+    ]
+
+    session = SessionLocal()
+    for title, description in notifications:
+        # Проверка наличия уведомления с таким заголовком
+        existing_notification = session.query(Notification).filter_by(title=title).first()
+
+        if existing_notification is None:
+            # Уведомление не существует, добавляем новое
+            notification = Notification(title=title, description=description)
+            try:
+                session.add(notification)
+                session.commit()
+            except IntegrityError as e:
+                session.rollback()
+                logging.error(f"Failed to insert notification with title '{title}': {e}")
+        else:
+            logging.info(f"Notification with title '{title}' already exists.")
 
     session.close()
 

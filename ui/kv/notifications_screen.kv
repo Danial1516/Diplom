@@ -1,0 +1,53 @@
+<NotificationsScreen>:
+    name: 'notifications'
+    MDScreen:
+        md_bg_color: 28/255, 140/255, 140/255, 1
+
+        FloatLayout:
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                size_hint: (1, 1)
+                MDBoxLayout:
+                    id: notifications_box
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    padding: [dp(30), dp(35), dp(30), dp(30)]
+                    spacing: dp(20)
+                    height: self.minimum_height
+
+
+<CustMDCard>:
+    size_hint: None, None
+    width: "300dp"
+    size_hint_y: None
+    height: self.minimum_height
+    orientation: "vertical"
+    md_bg_color: 255/255, 223/255, 186/255, 1
+    padding: "8dp"
+    spacing: "8dp"
+    pos_hint: {"top": 0.95, "center_x": 0.5}
+
+    MDLabel:
+        id: title_label
+        text: "Заголовок"
+        halign: "center"
+        font_name: "Clearsan"
+        theme_text_color: "Primary"
+        size_hint_y: None
+        height: self.texture_size[1]
+        pos_hint: {"top": 1}
+
+    MDSeparator:
+        height: "2dp"
+
+    MDLabel:
+        id: description_label
+        text: "Контент здесь"
+        font_name: "Clearsan"
+        halign: "justify"
+        valign: "top"
+        theme_text_color: "Secondary"
+        size_hint_y: None
+        text_size: self.width, None
+        height: self.texture_size[1]
