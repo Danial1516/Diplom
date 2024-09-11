@@ -32,14 +32,12 @@ class RatingScreen(MDScreen):
 
 class CustMDCard(MDCard):
     def __init__(self, **kwargs):
-        print("Initializing CustMDCard")
         super(CustMDCard, self).__init__(**kwargs)
 
 
 class NotificationsScreen(MDScreen):
     def on_kv_post(self, base_widget):
         super(NotificationsScreen, self).on_kv_post(base_widget)
-        print("Loading notifications")
         self.load_notifications()
 
     def load_notifications(self):
