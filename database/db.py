@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Date, Text, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import sessionmaker, relationship, Session
 from sqlalchemy.exc import IntegrityError
 import logging
 from datetime import datetime
@@ -514,6 +514,16 @@ class Database:
             .all()
         )
 
+    @staticmethod
+    def get_sentence_words(sentence_id: int, db: Session):
+        return db.query(SentenceWord).filter(SentenceWord.sentence_id == sentence_id).order_by(
+            SentenceWord.position).all()
+
+    @staticmethod
+    def get_random_sentence(db: Session):
+        return get_random_sentence(db)
+
+
     def get_random_question_with_answers(self):
         """Получает случайный вопрос с его вариантами ответов."""
         question = self.session.query(TestQuestion).order_by(func.random()).first()  # Получаем случайный вопрос
@@ -564,6 +574,14 @@ class Database:
                     break
 
         return streak
+
+def get_random_sentence(db: Session):
+    # Получаем все предложения
+    sentences = db.query(Sentence).all()
+    if sentences:
+        # Выбираем случайное предложение
+        return random.choice(sentences)
+    return None
 
 def seed_categories():
     categories = [
