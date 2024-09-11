@@ -57,11 +57,11 @@ class NotificationsScreen(MDScreen):
             notifications_box.clear_widgets()
 
             # Создаем и добавляем карточки для каждого уведомления
-            for notification in notifications:
+            for notification in reversed(notifications):
                 card = CustMDCard()
                 card.ids.title_label.text = notification.title
                 card.ids.description_label.text = notification.description
-                notifications_box.add_widget(card)
+                notifications_box.add_widget(card, index=0)  # Добавляем карточку в начало
 
             # Закрываем сессию
             session.close()
