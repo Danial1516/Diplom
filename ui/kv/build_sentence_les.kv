@@ -7,8 +7,8 @@
                 orientation: 'vertical'
                 size_hint_y: None
                 height: self.minimum_height
-                padding: [dp(20), dp(40), dp(20), dp(30)]
-                spacing: dp(50)
+                padding: [dp(20), dp(40), dp(20), dp(0)]
+                spacing: dp(30)
                 pos_hint: {"top": 1}
 
                 MDCard:
@@ -55,15 +55,22 @@
                     padding: dp(10)
                     adaptive_height: True
 
-                # Контейнер для динамических карточек
-                MDBoxLayout:
-                    id: cards_container
-                    orientation: 'horizontal'
-                    spacing: dp(10)
+                BoxLayout:
+                    id: sentence_container
+                    orientation: 'vertical'
                     size_hint_y: None
                     height: self.minimum_height
-                    padding: dp(10)
+                    spacing: dp(5)
+
+                # Контейнер для динамических карточек
+                MDGridLayout:
+                    id: cards_container
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    pos_hint: {"top": 1}
                     adaptive_height: True
+
 
     MDIconButton:
         icon: 'arrow-left'
