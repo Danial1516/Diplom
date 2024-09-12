@@ -27,26 +27,17 @@
                             orientation: 'vertical'
                             md_bg_color: 28/255, 140/255, 140/255, 1
 
-                            BoxLayout:
-                                size_hint_y: .1
-                                height: dp(56)
-                                padding: dp(8)
-                                MDIconButton:
-                                    icon: "fire"
-                                    theme_icon_color: "Custom"
-                                    icon_color: 0.847, 0.208, 0.329, 1
-
-                                Widget:
-                                    size_hint_x: None
-                                    width: dp(16)
+                            Widget:
+                                size_hint_y: None
+                                height: dp(30)
 
                             MDScrollView:
                                 MDBoxLayout:
                                     orientation: 'vertical'
                                     size_hint_y: None
                                     height: self.minimum_height  # Установите высоту на основе содержимого
-                                    padding:[dp(15),dp(15),dp(15),dp(35)]
-                                    spacing: dp(15)
+                                    padding: [dp(25), 0, dp(30), 0]
+                                    spacing: dp(25)
 
                                     # Первая строка кнопок
                                     BoxLayout:
@@ -54,21 +45,21 @@
                                         spacing: dp(15)
                                         size_hint_y: None
                                         height: dp(150)
+                                        spacing: dp(35)
 
                                         ElementCard:
                                             image:"assets/images/book.png"
-                                            text:"Знайди відповідність" #practice with time
+                                            text:"Знайди пару" #practice with time
                                             subtext:""
                                             items_count:""
-                                            size_hint_x: 0.5
                                             on_press: app.root.current = 'picture_screen'
 
                                         ElementCard:
                                             image:"assets/images/story.png"
-                                            text:"Groceries"  # practice with cards
+                                            text:"Перевірте свої знання"  # practice with time tasks(rating)
                                             subtext:""
                                             items_count:""
-                                            size_hint_x: 0.5
+                                            on_press: app.root.current = 'testing'
 
                                     # Вторая строка кнопок
                                     BoxLayout:
@@ -76,22 +67,21 @@
                                         spacing: dp(15)
                                         size_hint_y: None
                                         height: dp(150)
-
-                                        ElementCard:
-                                            image:"assets/images/story.png"
-                                            text:"Перевірте свої знання"  # practice with time tasks(rating)
-                                            subtext:""
-                                            items_count:""
-                                            size_hint_x: 0.5
-                                            on_press: app.root.current = 'testing'
+                                        spacing: dp(35)
 
                                         ElementCard:
                                             image:"assets/images/time.png"
                                             text:"Тест на час"
                                             subtext:""
                                             items_count:""
-                                            size_hint_x: 0.5
                                             on_press: app.root.current = 'time_test'
+
+                                        ElementCard:
+                                            image:"assets/images/listen.png"
+                                            text:"Аудіювання"
+                                            subtext:""
+                                            items_count:""
+                                            on_press: app.root.current = 'choose_lvl_listen'
 
                                     # Третья строка кнопок
                                     BoxLayout:
@@ -99,28 +89,18 @@
                                         spacing: dp(15)
                                         size_hint_y: None
                                         height: dp(150)
+                                        spacing: dp(35)
 
                                         ElementCard:
-                                            image:"assets/images/listen.png"
-                                            text:"Аудіювання"
-                                            subtext:""
-                                            items_count:""
-                                            size_hint_x: 0.5
-                                            on_press: app.root.current = 'choose_lvl_listen'
-
-                                        ElementCard:
-                                            image:"assets/images/ship.png"
+                                            image:"assets/images/stor.png"
                                             text:"Setting"
                                             subtext:""
                                             items_count:""
-                                            size_hint_x: 0.5
                                             on_press: app.root.current = 'build_sentence'
 
-                                    MDLabel:
-                                        text: "End of the content"
-                                        size_hint_y: None
-                                        height: self.texture_size[1]
-                                        halign: "center"
+
+
+
 
                     MDBottomNavigationItem:
                         name: 'tasks'
@@ -162,22 +142,22 @@
     shadow_radius: 3
     image:''
     text:""
-    items_count:""
-    subtext:''
+    size_hint_y: None
+    size_hint_x: None
+    height: dp(130)
+    width: dp(140)
 
     orientation:'vertical'
     Image:
         source:root.image
+        size_hint: None, None
+        size: dp(60), dp(60)  # Установите нужный размер
+        allow_stretch: True
+        pos_hint: {'center_x': 0.5}
+
     MDBoxLayout:
         orientation:'vertical'
         MDLabel:
             halign:"center"
             text:root.text
             font_style:"H6"
-        MDLabel:
-            halign:"center"
-            font_style:"Caption"
-            text:root.subtext
-        MDLabel:
-            halign:"center"
-            text:root.items_count
