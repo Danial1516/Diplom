@@ -206,7 +206,7 @@ class BuildSentenceLessonScreen(MDScreen):
     def reset_button(self):
         button = self.ids.check_buttn
         button.md_bg_color = [255 / 255, 223 / 255, 186 / 255, 1]  # Оригинальный цвет
-        button.text = "Перевірити"
+        button.children[0].text = "Перевірити"
         self.next_button_mode = False  # Переключаем режим кнопки в "Перевірити"
 
     def next_step(self):
