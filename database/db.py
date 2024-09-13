@@ -26,8 +26,21 @@ class User(Base):
     name = Column(String(255))
     email = Column(String(255), unique=True, index=True)
     password = Column(String(255))
-    progress = Column(Integer, default=0)
+    ratings = relationship("Rating", back_populates="user")
 
+
+class Rating(Base):
+    __tablename__ = 'ratings'
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)  # Внешний ключ для связи с таблицей User
+
+    # Поля для хранения времени в секундах и минутах
+    thirty_sec = Column(Integer, default=0)  # Рейтинг для 30 секунд
+    one_min = Column(Integer, default=0)  # Рейтинг для 1 минуты
+    three_min = Column(Integer, default=0)  # Рейтинг для 3 минут
+
+    # Определение отношения с таблицей User
+    user = relationship("User", back_populates="ratings")
 
 class UserLogin(Base):
     __tablename__ = 'user_logins'

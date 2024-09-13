@@ -16,12 +16,18 @@ class TimeTestQuestions(MDScreen):
     remaining_time = 0  # Оставшееся время в секундах
     correct_answers = NumericProperty(0)  # Количество правильных ответов
     total_questions = NumericProperty(0)  # Общее количество вопросов
+    consecutive_correct_answers = NumericProperty(0)  # Текущие правильные ответы подряд
+    total_consecutive_correct_answers = NumericProperty(0)  # Суммарные правильные ответы подряд
+    total_remaining_time = NumericProperty(0)  # Накопленное время для бонуса
     db = Database()
     used_question_ids = set()
 
     def on_pre_enter(self, *args):
         self.correct_answers = 0
         self.total_questions = 0
+        self.consecutive_correct_answers = 0
+        self.total_consecutive_correct_answers = 0
+        self.total_remaining_time = 0
         self.used_question_ids.clear()
 
         self.load_new_question()
@@ -70,8 +76,14 @@ class TimeTestQuestions(MDScreen):
         """Обрабатывает выбор ответа пользователем."""
         if selected_answer == correct_answer:
             self.correct_answers += 1
+            self.consecutive_correct_answers += 1  # Увеличиваем количество правильных ответов подряд
+            self.total_remaining_time += self.remaining_time * 0.1  # Учитываем бонусное время
             print("Correct!")
         else:
+            # Сохраняем количество правильных ответов подряд, если их больше 1
+            if self.consecutive_correct_answers > 1:
+                self.total_consecutive_correct_answers += self.consecutive_correct_answers
+            self.consecutive_correct_answers = 0  # Сброс текущего количества правильных ответов подряд
             print("Incorrect!")
 
         # Загружаем новый вопрос после выбора ответа
@@ -106,8 +118,18 @@ class TimeTestQuestions(MDScreen):
 
     def show_results_dialog(self):
         """Отображает диалог с результатами."""
+        # Учитываем оставшиеся правильные ответы подряд, если больше 1
+        if self.consecutive_correct_answers > 1:
+            self.total_consecutive_correct_answers += self.consecutive_correct_answers
+
+        # Рассчитываем баллы
+        score = self.calculate_score()
+
         content = CustomDialCont()
-        content.ids.score_label.text = f"Правильних відповідей {self.correct_answers} з {self.total_questions}"
+        content.ids.score_label.text = (
+            f"Правильних відповідей {self.correct_answers} з {self.total_questions}\n"
+            f"Ваші бали: {score:.2f}"
+        )
 
         self.dialog = MDDialog(
             title="Результат",
@@ -123,6 +145,14 @@ class TimeTestQuestions(MDScreen):
             ],
         )
         self.dialog.open()
+
+    def calculate_score(self):
+        """Вычисляет окончательный счёт пользователя."""
+        return (
+            self.correct_answers * 10 +  # Базовые баллы за правильные ответы
+            self.total_consecutive_correct_answers * 10 +  # Бонус за правильные ответы подряд
+            self.total_remaining_time  # Бонусное время
+        )
 
     def on_dialog_ok(self, *args):
         """Закрывает диалог и возвращает пользователя на экран 'time_test'."""
