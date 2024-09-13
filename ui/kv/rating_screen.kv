@@ -1,10 +1,62 @@
 <RatingScreen>:
     name: 'rating'
-    MDScreen:
+    MDBoxLayout:
+        orientation: 'vertical'
         md_bg_color: 28/255, 140/255, 140/255, 1
 
-        FloatLayout:
-            ScrollView:
-                do_scroll_x: False
-                do_scroll_y: True
-                size_hint: (1, 1)
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(48)
+            spacing: dp(10)
+            padding: dp(10)
+
+            MDRaisedButton:
+                text: "30 секунд"
+                on_release: root.update_ratings('thirty_sec')
+
+            MDRaisedButton:
+                text: "1 хвилина"
+                on_release: root.update_ratings('one_min')
+
+            MDRaisedButton:
+                text: "3 хвилини"
+                on_release: root.update_ratings('three_min')
+
+        MDScrollView:
+            MDList:
+                id: rating_list
+                # Вставляем заголовки столбцов
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(48)
+                    padding: dp(10)
+
+                    MDLabel:
+                        text: "№"
+                        size_hint_x: 0.1
+                        halign: 'center'
+
+                    MDSeparator:
+                        orientation: 'vertical'
+                        width: dp(1)
+                        color: 0, 0, 0, 1
+
+                    MDLabel:
+                        text: "Ім'я"
+                        size_hint_x: 0.6
+                        halign: 'center'
+
+                    MDSeparator:
+                        orientation: 'vertical'
+                        width: dp(1)
+                        color: 0, 0, 0, 1
+
+                    MDLabel:
+                        text: "Бали"
+                        size_hint_x: 0.3
+                        halign: 'center'
+
+                MDSeparator:
+                    height: dp(2)

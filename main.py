@@ -1,5 +1,5 @@
 # main.py
-from database.db import create_tables
+from database.db import create_tables, initialize_ratings
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivymd.app import MDApp
@@ -139,6 +139,7 @@ class LangVoyageApp(MDApp):
         password = self.root.get_screen('register').ids.register_password.text
         if register_user(name, email, password):
             toast("Registration successful!")
+            initialize_ratings()
             self.root.current = 'login'
         else:
             toast("Email already exists")

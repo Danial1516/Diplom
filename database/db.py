@@ -182,17 +182,21 @@ def initialize_ratings():
     try:
         # Получаем всех пользователей из таблицы User
         users = session.query(User).all()
+        print(f"Найдено {len(users)} пользователей")
 
         for user in users:
             # Проверяем, есть ли у пользователя запись в таблице Rating
             existing_rating = session.query(Rating).filter(Rating.user_id == user.id).first()
 
-            # Если записи нет, создаем её с начальными значениями
             if not existing_rating:
+                print(f"Создание рейтинга для пользователя с id {user.id}")
                 new_rating = Rating(user_id=user.id)
                 session.add(new_rating)
+            else:
+                print(f"Рейтинг для пользователя с id {user.id} уже существует")
 
         session.commit()
+        print("Инициализация рейтингов завершена успешно")
 
     except IntegrityError as e:
         session.rollback()
