@@ -9,19 +9,52 @@
             size_hint_y: None
             height: dp(48)
             spacing: dp(10)
-            padding: dp(10)
+            padding: [dp(18), dp(30), dp(18), dp(10)]
+            padding_top: dp(30)
+            # Центрирование карточек
+            pos_hint: {"center_x": 0.5}
 
-            MDRaisedButton:
-                text: "30 секунд"
+            MDCard:
+                size_hint: None, None
+                size: "100dp", "35dp"
+                md_bg_color: 200/255, 255/255, 200/255, 1
+                elevation: 2
                 on_release: root.update_ratings('thirty_sec')
+                padding: dp(10)
+                radius: [8,]
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "30 секунд"
+                        halign: 'center'
 
-            MDRaisedButton:
-                text: "1 хвилина"
+            MDCard:
+                size_hint: None, None
+                size: "100dp", "35dp"
+                md_bg_color: 200/255, 255/255, 200/255, 1
                 on_release: root.update_ratings('one_min')
+                padding: dp(10)
+                elevation: 2
+                radius: [8,]
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "1 хвилина"
+                        halign: 'center'
 
-            MDRaisedButton:
-                text: "3 хвилини"
+            MDCard:
+                size_hint: None, None
+                size: "100dp", "35dp"
+                md_bg_color: 200/255, 255/255, 200/255, 1
                 on_release: root.update_ratings('three_min')
+                padding: dp(10)
+                elevation: 2
+                radius: [8,]
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "3 хвилини"
+                        halign: 'center'
 
         MDScrollView:
             MDList:
