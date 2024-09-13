@@ -2,14 +2,11 @@ from kivy.properties import ObjectProperty, Clock, NumericProperty
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.screen import MDScreen
 from database.db import Database
 
-
 class CustomDialCont(MDBoxLayout):
     pass
-
 
 class TimeTestQuestions(MDScreen):
     timer_event = None
@@ -21,6 +18,7 @@ class TimeTestQuestions(MDScreen):
     total_remaining_time = NumericProperty(0)  # Накопленное время для бонуса
     db = Database()
     used_question_ids = set()
+    user_id = NumericProperty(0)  # ID текущего пользователя
 
     def on_pre_enter(self, *args):
         self.correct_answers = 0
@@ -117,13 +115,17 @@ class TimeTestQuestions(MDScreen):
         self.ids.timer_label.text = f"{minutes:02}:{seconds:02}"
 
     def show_results_dialog(self):
-        """Отображает диалог с результатами."""
+        """Отображает диалог с результатами и сохраняет рейтинг в базу данных."""
         # Учитываем оставшиеся правильные ответы подряд, если больше 1
         if self.consecutive_correct_answers > 1:
             self.total_consecutive_correct_answers += self.consecutive_correct_answers
 
         # Рассчитываем баллы
         score = self.calculate_score()
+
+        # Сохраняем результат в базу данных
+        if self.user_id:
+            self.save_score_to_db(self.user_id, score)
 
         content = CustomDialCont()
         content.ids.score_label.text = (
@@ -170,3 +172,21 @@ class TimeTestQuestions(MDScreen):
         if self.timer_event:
             self.timer_event.cancel()
         self.ids.timer_label.text = "00:00"
+
+    def save_score_to_db(self, user_id, score):
+        """Сохраняет или обновляет рейтинг в базе данных."""
+        # Определяем временной интервал для записи в базе данных
+        time_test_screen = self.manager.get_screen('time_test')
+        selected_time = time_test_screen.selected_time
+
+        if selected_time == "30 секунд":
+            interval_key = 'thirty_sec'
+        elif selected_time == "1 хвилина":
+            interval_key = 'one_min'
+        elif selected_time == "3 хвилини":
+            interval_key = 'three_min'
+        else:
+            raise ValueError(f"Unknown time interval: {selected_time}")
+
+        # Обновляем или вставляем рейтинг
+        self.db.update_or_insert_rating(user_id, score, interval_key)

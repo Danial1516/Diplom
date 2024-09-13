@@ -9,7 +9,9 @@ db = Database()
 
 def login_user(email, password):
     user = db.login_user(email, password)
-    return user is not None
+    if user:
+        return user.id  # Возвращаем ID пользователя
+    return None
 
 def register_user(name, email, password):
     result = db.register_user(name, email, password)

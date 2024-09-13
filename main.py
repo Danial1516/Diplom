@@ -123,12 +123,15 @@ class LangVoyageApp(MDApp):
     def login(self):
         email = self.root.get_screen('login').ids.login_email.text
         password = self.root.get_screen('login').ids.login_password.text
-        if login_user(email, password):
-            self.current_user = email
+        user_id = login_user(email, password)
+        if user_id:
+            TimeTestQuestions.user_id = user_id
             toast("Login successful!")
             self.root.current = 'main'
         else:
             toast("Invalid email or password")
+
+
 
     def register(self):
         name = self.root.get_screen('register').ids.register_name.text

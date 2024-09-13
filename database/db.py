@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Date, Text, Boolean, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Date, Text, Boolean, ForeignKey, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship, Session
 from sqlalchemy.exc import IntegrityError
@@ -34,10 +34,10 @@ class Rating(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)  # Внешний ключ для связи с таблицей User
 
-    # Поля для хранения времени в секундах и минутах
-    thirty_sec = Column(Integer, default=0)  # Рейтинг для 30 секунд
-    one_min = Column(Integer, default=0)  # Рейтинг для 1 минуты
-    three_min = Column(Integer, default=0)  # Рейтинг для 3 минут
+    # Поля для хранения времени в секундах и минутах, изменены на Numeric
+    thirty_sec = Column(Numeric(precision=20, scale=2), default=0)  # Рейтинг для 30 секунд
+    one_min = Column(Numeric(precision=20, scale=2), default=0)  # Рейтинг для 1 минуты
+    three_min = Column(Numeric(precision=20, scale=2), default=0)  # Рейтинг для 3 минут
 
     # Определение отношения с таблицей User
     user = relationship("User", back_populates="ratings")
@@ -172,7 +172,34 @@ def create_tables():
     seed_image_choice()
     seed_sentences_and_words()
     seed_notifications()
+    initialize_ratings()
 
+
+def initialize_ratings():
+    """Добавление всех существующих пользователей в таблицу Rating с начальными значениями."""
+    session = SessionLocal()
+
+    try:
+        # Получаем всех пользователей из таблицы User
+        users = session.query(User).all()
+
+        for user in users:
+            # Проверяем, есть ли у пользователя запись в таблице Rating
+            existing_rating = session.query(Rating).filter(Rating.user_id == user.id).first()
+
+            # Если записи нет, создаем её с начальными значениями
+            if not existing_rating:
+                new_rating = Rating(user_id=user.id)
+                session.add(new_rating)
+
+        session.commit()
+
+    except IntegrityError as e:
+        session.rollback()
+        print(f"Ошибка при инициализации рейтингов: {e}")
+
+    finally:
+        session.close()
 
 def seed_sentences_and_words():
     sentences = [
@@ -551,6 +578,33 @@ def seed_levels():
 class Database:
     def __init__(self):
         self.session = SessionLocal()
+
+    def update_or_insert_rating(self, user_id, score, interval_key):
+        """Обновляет или вставляет рейтинг пользователя для определенного временного интервала."""
+        try:
+            # Проверяем, есть ли уже рейтинг для этого пользователя
+            existing_rating = self.session.query(Rating).filter_by(user_id=user_id).first()
+            if existing_rating:
+                # Если есть, обновляем только если новый результат лучше
+                if score > getattr(existing_rating, interval_key):
+                    setattr(existing_rating, interval_key, score)
+                    self.session.commit()
+            else:
+                # Если нет, создаем новую запись
+                new_rating_data = {
+                    'user_id': user_id,
+                    interval_key: score
+                }
+                new_rating = Rating(**new_rating_data)
+                self.session.add(new_rating)
+                self.session.commit()
+            logging.debug(f"Rating for user {user_id} updated successfully")
+            return True
+        except IntegrityError as e:
+            self.session.rollback()
+            logging.error(f"Failed to update rating for user {user_id}: {e}")
+            return False
+
 
     def get_random_images(self, category_id, limit=4):
         return (
