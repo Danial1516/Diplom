@@ -4,10 +4,9 @@
     height: self.texture_size[1]
     padding: 12, 10
     theme_text_color: "Custom"
-    text_color: 1, 1, 1, 1
     canvas.before:
         Color:
-            rgb: (1, 170/255, 23/255, 1)
+            rgba: (200/255, 255/255, 200/255, 1)
         RoundedRectangle:
             size: self.width, self.height
             pos: self.pos
@@ -19,7 +18,7 @@
     padding: 12, 10
     canvas.before:
         Color:
-            rgb: (1, 1, 1, 1)
+            rgba: 173/255, 216/255, 230/255, 1
         RoundedRectangle:
             size: self.width, self.height
             pos: self.pos
@@ -32,7 +31,7 @@
     pos_hint: {"x": .02}
     canvas.before:
         Color:
-            rgb: (1, 1, 1, 1)
+            rgba: 173/255, 216/255, 230/255, 1
         RoundedRectangle:
             size: self.width, self.height
             pos: self.pos
@@ -73,7 +72,7 @@
                     cols: 1
                     spacing: 5
             MDFloatLayout:
-                md_bg_color: 245/255, 245/255, 245/255, 1
+                md_bg_color: 28/255, 140/255, 140/255, 1
                 size_hint_y: .11
                 MDFloatLayout:
                     size_hint: .8, .75
@@ -98,7 +97,7 @@
                         foreground_color: 1, 170/255, 23/255, 1
                         background_color: 0,0,0,0
                         padding: 15
-                        font_name: "Poppins"
+                        font_name: "Clearsan"
                 MDIconButton:
                     icon: "send"
                     pos_hint: {"center_x": .91, "center_y": .5}

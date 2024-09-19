@@ -5,18 +5,48 @@ from kivy.uix.image import Image
 from kivy.properties import StringProperty, NumericProperty
 from kivy.core.text import LabelBase
 
+import json
+import pandas as pd
+import torch
+from sentence_transformers import SentenceTransformer, util
+
+# Загрузка модели и эмбеддингов
+model = SentenceTransformer('paraphrase-multilingual-mpnet-base-v2')
+question_embeddings = torch.load('question_embeddings.pt')
+
+# Чтение данных из файла
+with open('qust_expanded.txt', 'r', encoding='utf-8') as file:
+    data = json.load(file)
+df = pd.DataFrame(data)
+answers = df['answer'].tolist()
+
+def find_best_answer(question, model, question_embeddings, answers, threshold=0.7):
+    # Создание эмбеддинга для нового вопроса
+    question_embedding = model.encode(question, convert_to_tensor=True)
+    # Поиск схожести между новым вопросом и вопросами из базы данных
+    similarities = util.pytorch_cos_sim(question_embedding, question_embeddings)[0]
+    # Индекс наиболее похожего вопроса
+    most_similar_index = similarities.argmax().item()
+    # Значение схожести для наиболее близкого вопроса
+    similarity_score = similarities[most_similar_index].item()
+    # Проверяем, превышает ли схожесть заданный порог
+    if similarity_score < threshold:
+        return "Вопрос не найден, попробуйте переформулировать."
+    # Возвращаем ответ для наиболее похожего вопроса
+    return answers[most_similar_index], similarity_score
+
 class Command(MDLabel):
     text = StringProperty()
     size_hint_x = NumericProperty()
     halign = StringProperty()
-    font_name = "Poppins"
+    font_name = "Clearsan"
     font_size = 17
 
 class Response(MDLabel):
     text = StringProperty()
     size_hint_x = NumericProperty()
     halign = StringProperty()
-    font_name = "Poppins"
+    font_name = "Clearsan"
     font_size = 17
 
 class ResponseImage(Image):
@@ -28,18 +58,9 @@ class ChatScreen(MDScreen):
             self.ids.bot_name.text = self.ids.bot_name.text
 
     def response(self, *args):
-        response = ""
-        if self.value == "Hello" or self.value == "hello":
-            response = f"Hello. I Am Your Personal Assistant."
-        elif self.value == "How are you?" or self.value == "how are you?":
-            response = "I'm doing well. Thanks!"
-        elif self.value == "Images":
-            self.ids.chat_list.add_widget(ResponseImage(source="chatbots.jpg"))
-        elif self.value == "Images1":
-            self.ids.chat_list.add_widget(ResponseImage(source="1.png"))
-        else:
-            response = "Sorry could you say that again?"
-        self.ids.chat_list.add_widget(Response(text=response, size_hint_x=.75))
+        user_message = self.value
+        answer, score = find_best_answer(user_message, model, question_embeddings, answers)
+        self.ids.chat_list.add_widget(Response(text=answer, size_hint_x=.75))
 
     def send(self):
         if self.ids.text_input.text != "":
@@ -66,4 +87,3 @@ class ChatScreen(MDScreen):
                 Command(text=self.value, size_hint_x=size, halign=halign))
             Clock.schedule_once(self.response, 2)
             self.ids.text_input.text = ""
-
