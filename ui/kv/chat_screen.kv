@@ -44,8 +44,9 @@
         chat_list: chat_list
         name: "chats"
         MDFloatLayout:
+            md_bg_color: 28/255, 140/255, 140/255, 1
             MDFloatLayout:
-                md_bg_color: 245/255, 245/255, 245/255, 1
+                md_bg_color: 28/255, 140/255, 140/255, 1
                 size_hint_y: .11
                 pos_hint: {"center_y": .95}
                 MDLabel:
@@ -72,7 +73,7 @@
                     cols: 1
                     spacing: 5
             MDFloatLayout:
-                md_bg_color: 28/255, 140/255, 140/255, 1
+                md_bg_color: 18/255, 110/255, 110/255, 1
                 size_hint_y: .11
                 MDFloatLayout:
                     size_hint: .8, .75
@@ -86,7 +87,7 @@
                             radius: [23, 23, 23, 23]
                     TextInput:
                         id: text_input
-                        hint_text: "Type your message..."
+                        hint_text: "Введіть своє повідомлення..."
                         size_hint: 1, None
                         pos_hint: {"center_x": .5, "center_y": .5}
                         font_size: "18sp"

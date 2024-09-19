@@ -53,6 +53,14 @@ class ResponseImage(Image):
     source = StringProperty()
 
 class ChatScreen(MDScreen):
+
+    def on_kv_post(self, base_widget):
+        super().on_kv_post(base_widget)
+        # Отправляем приветственное сообщение, когда экран становится видимым
+        self.ids.chat_list.add_widget(
+            Response(text="Привіт! Я твій помічник. Ти можеш задати мені питання, а я спробую відповісти.", size_hint_x=.75)
+        )
+
     def bot_name(self):
         if self.ids.bot_name.text != "":
             self.ids.bot_name.text = self.ids.bot_name.text
